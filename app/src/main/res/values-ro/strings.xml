@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">PimpMyWed</string>
+    <string name="title_countdown">Timp ramas</string>
+    <string name="title_statistics">Statistici</string>
+    <string name="title_layout">Mese</string>
+    <string name="title_search_edit">Cauta</string>
+    <string name="table_label">Masa</string>
+    <string name="view_by_table">Masa</string>
+    <string name="all_tables">Toate mesele</string>
+    <string name="search_error">A aparut o eroare</string>
+    <string name="empty_result">Invitatul nu a fost gasit</string>
+    <string name="not_enough_characters">Introdu mai multe caractere</string>
+    <string name="type_guest_name">Introdu nume invitat</string>
+    <string name="total_of_invited_persons">Numar total de persoane invitate:</string>
+    <string name="total_of_guests">Numar total de invitati:</string>
+    <string name="total_of_guests_with_vegetarian_menu">Numar total de invitati cu meniu vegetarian:</string>
+    <string name="total_of_guests_with_classic_menu">Numar total de invitati cu meniu clasic:</string>
+    <string name="total_of_guests_with_children_menu">Numar total de invitati copii:</string>
+    <string name="total_of_checked_in_guests">Numar total de invitati inregistrati:</string>
+    <string name="total_of_not_checked_in_guests">Numar total de invitati neinregistrati:</string>
+    <string name="name">Nume, prenume:</string>
+    <string name="menu">Meniu:</string>
+    <string name="table">Masa:</string>
+    <string name="age">Varsta:</string>
+    <string name="status">Status:</string>
+    <string name="check_in">Inregistrare</string>
+    <string name="unexpected_error">Eroare neprevazuta</string>
+</resources>

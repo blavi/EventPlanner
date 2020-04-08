@@ -1,0 +1,210 @@
+[
+  {
+    "Nume": "Veronica",
+    "Invitat_NUMAR": 1,
+    "Confirmat": 1,
+    "Invitat": "Da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Lili",
+    "Invitat_NUMAR": 2,
+    "Confirmat": 2,
+    "Invitat": "Da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Rodica",
+    "Invitat_NUMAR": 2,
+    "Confirmat": 2,
+    "Invitat": "da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Ramona",
+    "Invitat_NUMAR": 2,
+    "Confirmat": 2,
+    "Invitat": "da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Ionica",
+    "Invitat_NUMAR": 2,
+    "Confirmat": null,
+    "Invitat": "Da",
+    "Meniu": "-",
+    "Varsta": 0
+  },
+  {
+    "Nume": "Adina",
+    "Invitat_NUMAR": 2,
+    "Confirmat": null,
+    "Invitat": "Da",
+    "Meniu": "-",
+    "Varsta": 0
+  },
+  {
+    "Nume": "Ghita",
+    "Invitat_NUMAR": 3,
+    "Confirmat": 3,
+    "Invitat": "Da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Marinela",
+    "Invitat_NUMAR": 3,
+    "Confirmat": 4,
+    "Invitat": "da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Lia",
+    "Invitat_NUMAR": 2,
+    "Confirmat": 2,
+    "Invitat": "da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Vasile",
+    "Invitat_NUMAR": 3,
+    "Confirmat": null,
+    "Invitat": "",
+    "Meniu": "-",
+    "Varsta": 0
+  },
+  {
+    "Nume": "Dorel",
+    "Invitat_NUMAR": 2,
+    "Confirmat": 2,
+    "Invitat": "Da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Claudia",
+    "Invitat_NUMAR": 4,
+    "Confirmat": null,
+    "Invitat": "Da",
+    "Meniu": "-",
+    "Varsta": 0
+  },
+  {
+    "Nume": "Narcis",
+    "Invitat_NUMAR": 2,
+    "Confirmat": null,
+    "Invitat": "da",
+    "Meniu": "-",
+    "Varsta": 0
+  },
+  {
+    "Nume": "Marian",
+    "Invitat_NUMAR": 2,
+    "Confirmat": 3,
+    "Invitat": "Da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Nasu",
+    "Invitat_NUMAR": 1,
+    "Confirmat": 1,
+    "Invitat": "da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Nasa",
+    "Invitat_NUMAR": 1,
+    "Confirmat": 0,
+    "Invitat": "Da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Mama Alex",
+    "Invitat_NUMAR": 1,
+    "Confirmat": 1,
+    "Invitat": "Da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Alex",
+    "Invitat_NUMAR": 2,
+    "Confirmat": null,
+    "Invitat": "da",
+    "Meniu": "-",
+    "Varsta": 0
+  },
+  {
+    "Nume": "Costel",
+    "Invitat_NUMAR": 2,
+    "Confirmat": null,
+    "Invitat": "Da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Lenuca",
+    "Invitat_NUMAR": 1,
+    "Confirmat": 1,
+    "Invitat": "da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Bebe",
+    "Invitat_NUMAR": 1,
+    "Confirmat": null,
+    "Invitat": "da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Florin",
+    "Invitat_NUMAR": 1,
+    "Confirmat": null,
+    "Invitat": "da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Ioana",
+    "Invitat_NUMAR": 4,
+    "Confirmat": null,
+    "Invitat": "da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Arad",
+    "Invitat_NUMAR": 1,
+    "Confirmat": null,
+    "Invitat": "Da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Petronela ",
+    "Invitat_NUMAR": 1,
+    "Confirmat": null,
+    "Invitat": "Da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  },
+  {
+    "Nume": "Parinti",
+    "Invitat_NUMAR": 2,
+    "Confirmat": null,
+    "Invitat": "Da",
+    "Meniu": "clasic",
+    "Varsta": 40
+  }
+]

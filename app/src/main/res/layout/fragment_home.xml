@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:id="@+id/totalOfInvitedPersonsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/table_content_size"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/total_of_invited_persons"
+        android:fontFamily="@font/poiret_one"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/totalOfInvitedPersonsVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintStart_toEndOf="@+id/totalOfInvitedPersonsLabel"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/gafata"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/guest_margin_top_size"/>
+
+    <TextView
+        android:id="@+id/totalOfGuestsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalOfInvitedPersonsLabel"
+        android:text="@string/total_of_guests"
+        android:fontFamily="@font/poiret_one"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/totalOfGuestssVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintTop_toBottomOf="@+id/totalOfInvitedPersonsLabel"
+        app:layout_constraintStart_toEndOf="@+id/totalOfGuestsLabel"
+        android:fontFamily="@font/gafata"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/guest_margin_top_size"/>
+
+    <TextView
+        android:id="@+id/totalOfGuestsWithVegetarianMenuLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalOfGuestsLabel"
+        android:text="@string/total_of_guests_with_vegetarian_menu"
+        android:fontFamily="@font/poiret_one"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/totalOfGuestsWithVegetarianMenuVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintTop_toBottomOf="@+id/totalOfGuestsLabel"
+        app:layout_constraintStart_toEndOf="@+id/totalOfGuestsWithVegetarianMenuLabel"
+        android:fontFamily="@font/gafata"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/guest_margin_top_size"/>
+
+    <TextView
+        android:id="@+id/totalOfGuestsWithClassicMenuLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalOfGuestsWithVegetarianMenuLabel"
+        android:text="@string/total_of_guests_with_classic_menu"
+        android:fontFamily="@font/poiret_one"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/totalOfGuestsWithClassicMenuVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintTop_toBottomOf="@+id/totalOfGuestsWithVegetarianMenuLabel"
+        app:layout_constraintStart_toEndOf="@+id/totalOfGuestsWithClassicMenuLabel"
+        android:fontFamily="@font/gafata"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/guest_margin_top_size"/>
+
+    <TextView
+        android:id="@+id/totalOfGuestsWithChildrenMenuLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalOfGuestsWithClassicMenuLabel"
+        android:text="@string/total_of_guests_with_children_menu"
+        android:fontFamily="@font/poiret_one"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/totalOfGuestsWithChildrenMenuVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintTop_toBottomOf="@+id/totalOfGuestsWithClassicMenuLabel"
+        app:layout_constraintStart_toEndOf="@+id/totalOfGuestsWithChildrenMenuLabel"
+        android:fontFamily="@font/gafata"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/guest_margin_top_size"/>
+
+    <TextView
+        android:id="@+id/totalOfCheckedInGuestsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalOfGuestsWithChildrenMenuLabel"
+        android:text="@string/total_of_checked_in_guests"
+        android:fontFamily="@font/poiret_one"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/totalOfCheckedInGuestsVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintTop_toBottomOf="@+id/totalOfGuestsWithChildrenMenuLabel"
+        app:layout_constraintStart_toEndOf="@+id/totalOfCheckedInGuestsLabel"
+        android:fontFamily="@font/gafata"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/guest_margin_top_size"/>
+
+    <TextView
+        android:id="@+id/totalOfNotCheckedInGuestsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalOfCheckedInGuestsLabel"
+        android:text="@string/total_of_not_checked_in_guests"
+        android:fontFamily="@font/poiret_one"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/totalOfNotCheckedInGuestsVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/table_content_size"
+        app:layout_constraintTop_toBottomOf="@+id/totalOfCheckedInGuestsLabel"
+        app:layout_constraintStart_toEndOf="@+id/totalOfNotCheckedInGuestsLabel"
+        android:fontFamily="@font/gafata"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/guest_margin_top_size"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

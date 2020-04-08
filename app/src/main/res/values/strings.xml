@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">PimpMyWed</string>
+    <string name="title_countdown">Countdown</string>
+    <string name="title_statistics">Statistics</string>
+    <string name="title_layout">Tables</string>
+    <string name="title_search_edit">Search</string>
+    <string name="table_label">Table</string>
+    <string name="view_by_table">View By Table</string>
+    <string name="all_tables">All Tables</string>
+    <string name="search_error">An error occurred</string>
+    <string name="empty_result">Guest not found</string>
+    <string name="not_enough_characters">Not enough charachters</string>
+    <string name="type_guest_name">Type guest name</string>
+    <string name="total_of_invited_persons">Total of invited persons:</string>
+    <string name="total_of_guests">Total of guests:</string>
+    <string name="total_of_guests_with_vegetarian_menu">Total of guests with vegetarian menu:</string>
+    <string name="total_of_guests_with_classic_menu">Total of guests with classic menu:</string>
+    <string name="total_of_guests_with_children_menu">Total of guests with children menu:</string>
+    <string name="total_of_checked_in_guests">Total of checked in guests:</string>
+    <string name="total_of_not_checked_in_guests">Total of not checked in guests:</string>
+    <string name="name">Name:</string>
+    <string name="menu">Menu:</string>
+    <string name="table">Table:</string>
+    <string name="age">Age:</string>
+    <string name="status">Status:</string>
+    <string name="check_in">Check In</string>
+    <string name="unexpected_error">Unexpected error in SearchRepository!</string>
+</resources>
