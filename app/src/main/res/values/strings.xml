@@ -21,8 +21,13 @@
     <string name="name">Name:</string>
     <string name="menu">Menu:</string>
     <string name="table">Table:</string>
+    <string name="table1">Table</string>
     <string name="age">Age:</string>
     <string name="status">Status:</string>
     <string name="check_in">Check In</string>
     <string name="unexpected_error">Unexpected error in SearchRepository!</string>
+    <string name="days">Days</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="seconds">Seconds</string>
 </resources>

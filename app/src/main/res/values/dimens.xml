@@ -7,4 +7,7 @@
     <dimen name="table_content_size">20sp</dimen>
     <dimen name="guest_left_margin_size">30dp</dimen>
     <dimen name="guest_margin_top_size">8dp</dimen>
+    <dimen name="counter_margin_size_horizontal">12dp</dimen>
+    <dimen name="counter_margin_size_vertical">16dp</dimen>
+    <dimen name="counter_size">48sp</dimen>
 </resources>

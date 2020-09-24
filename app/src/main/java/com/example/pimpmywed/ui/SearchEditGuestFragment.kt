@@ -6,53 +6,47 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.pimpmywed.R
 import com.example.pimpmywed.adapter.TableGuestsAdapter
 import com.example.pimpmywed.database.GuestsEntity
+import com.example.pimpmywed.databinding.FragmentSearchEditBinding
 import com.example.pimpmywed.utils.*
 import com.example.pimpmywed.viewmodel.SearchGuestsViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.concurrent.fixedRateTimer
 
 class SearchEditGuestFragment : Fragment() {
 
     private lateinit var searchGuestsViewModel: SearchGuestsViewModel
-    private lateinit var guestsList : RecyclerView
-    private lateinit var editTextView : EditText
-    private lateinit var otherResult : TextView
+    private lateinit var binding: FragmentSearchEditBinding
+
     private lateinit var editableQuery : Editable
-    private lateinit var progressBar : ProgressBar
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        searchGuestsViewModel = ViewModelProvider(this).get(SearchGuestsViewModel::class.java)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        searchGuestsViewModel = ViewModelProvider(this).get(SearchGuestsViewModel::class.java)
 
-        val root = inflater.inflate(R.layout.fragment_search_edit, container, false)
-        guestsList= root.findViewById(R.id.searchResult)
-        editTextView = root.findViewById(R.id.searchEditTxtView)
-        otherResult = root.findViewById(R.id.otherResultTxtView)
-        progressBar = root.findViewById(R.id.progressbar)
+        binding = FragmentSearchEditBinding.inflate(inflater, container, false)
 
         setupObservers()
         setUI()
 
-        return root
+        return binding.root
     }
 
     private fun setUI() {
-        editTextView.doAfterTextChanged {editable ->
+        binding.searchEditTxtView.doAfterTextChanged {editable ->
             if (editable != null) {
                 editableQuery = editable
             }
@@ -66,13 +60,13 @@ class SearchEditGuestFragment : Fragment() {
 
     private fun updateList(list : List<GuestsEntity>) {
         var adapterAll : TableGuestsAdapter = TableGuestsAdapter(list, { guestItem : GuestsEntity -> guestItemClicked(guestItem) })
-        guestsList.layoutManager = LinearLayoutManager(activity)
-        guestsList.adapter = adapterAll
+        binding.searchResult.layoutManager = LinearLayoutManager(requireActivity())
+        binding.searchResult.adapter = adapterAll
     }
 
     private fun guestItemClicked(guestItem: GuestsEntity) {
         val pop = GuestDetailsDialogFragment()
-        val fm = fragmentManager!!
+        val fm = parentFragmentManager
 
         val bundle = Bundle()
         bundle.putParcelable(Constants.GUEST_KEY, guestItem)
@@ -93,38 +87,38 @@ class SearchEditGuestFragment : Fragment() {
     }
 
     private fun hideLoadingDialog() {
-        progressBar.visibility = View.GONE
+        binding.progressbar.visibility = View.GONE
     }
 
     private fun showLoadingDialog() {
-        progressBar.visibility = View.VISIBLE
+        binding.progressbar.visibility = View.VISIBLE
     }
 
     private fun setupObservers() {
         searchGuestsViewModel.searchResult.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is ValidResult -> {
-                    otherResult.visibility = View.GONE
-                    guestsList.visibility = View.VISIBLE
+                    binding.otherResultTxtView.visibility = View.GONE
+                    binding.searchResult.visibility = View.VISIBLE
                     updateList(it.result)
                 }
                 is ErrorResult -> {
                     updateList(emptyList())
-                    otherResult.visibility = View.VISIBLE
-                    guestsList.visibility = View.GONE
-                    otherResult.setText(R.string.search_error)
+                    binding.otherResultTxtView.visibility = View.VISIBLE
+                    binding.searchResult.visibility = View.GONE
+                    binding.otherResult = getString(R.string.search_error)
                 }
                 is EmptyResult -> {
                     updateList(emptyList())
-                    otherResult.visibility = View.VISIBLE
-                    guestsList.visibility = View.GONE
-                    otherResult.setText(R.string.empty_result)
+                    binding.otherResultTxtView.visibility = View.VISIBLE
+                    binding.searchResult.visibility = View.GONE
+                    binding.otherResult = getString(R.string.empty_result)
                 }
                 is EmptyQuery -> {
                     updateList(emptyList())
-                    otherResult.visibility = View.VISIBLE
-                    guestsList.visibility = View.GONE
-                    otherResult.setText(R.string.not_enough_characters)
+                    binding.otherResultTxtView.visibility = View.VISIBLE
+                    binding.searchResult.visibility = View.GONE
+                    binding.otherResult = getString(R.string.not_enough_characters)
                 }
                 is TerminalError -> {
                     Toast.makeText(

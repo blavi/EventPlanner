@@ -1,21 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textSize="40sp"
-        android:fontFamily="@font/poiret_one"
-        android:textStyle="bold"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable name="numberOfDaysVal" type="String" />
+        <variable name="numberOfHoursVal" type="String" />
+        <variable name="numberOfMinutesVal" type="String" />
+        <variable name="numberOfSecondsVal" type="String" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/numberOfDays"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/counter_size"
+                android:layout_marginTop="@dimen/counter_margin_size_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:fontFamily="@font/poiret_one"
+                android:textStyle="bold"
+                app:layout_constraintWidth_percent="0.4"
+                android:gravity="end"
+                android:text="@{numberOfDaysVal}"/>
+
+            <TextView
+                android:id="@+id/daysLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/counter_margin_size_vertical"
+                android:textSize="@dimen/counter_size"
+                app:layout_constraintStart_toEndOf="@+id/numberOfDays"
+                app:layout_constraintTop_toTopOf="parent"
+                android:fontFamily="@font/poiret_one"
+                android:text="@string/days"
+                android:layout_marginLeft="@dimen/counter_margin_size_horizontal"
+                app:layout_constraintWidth_percent="0.6" />
+
+            <TextView
+                android:id="@+id/numberOfHours"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/counter_margin_size_vertical"
+                android:textSize="@dimen/counter_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numberOfDays"
+                android:fontFamily="@font/poiret_one"
+                app:layout_constraintWidth_percent="0.4"
+                android:textStyle="bold"
+                android:gravity="end"
+                android:text="@{numberOfHoursVal}"/>
+
+            <TextView
+                android:id="@+id/hoursLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/counter_margin_size_vertical"
+                android:textSize="@dimen/counter_size"
+                app:layout_constraintTop_toBottomOf="@+id/numberOfDays"
+                app:layout_constraintStart_toEndOf="@+id/numberOfHours"
+                app:layout_constraintWidth_percent="0.6"
+                android:fontFamily="@font/poiret_one"
+                android:text="@string/hours"
+                android:layout_marginLeft="@dimen/counter_margin_size_horizontal" />
+
+            <TextView
+                android:id="@+id/numberOfMinutes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/counter_margin_size_vertical"
+                android:textSize="@dimen/counter_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numberOfHours"
+                app:layout_constraintWidth_percent="0.4"
+                android:fontFamily="@font/poiret_one"
+                android:textStyle="bold"
+                android:gravity="end"
+                android:text="@{numberOfMinutesVal}"/>
+
+            <TextView
+                android:id="@+id/minutesLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/counter_margin_size_vertical"
+                android:textSize="@dimen/counter_size"
+                app:layout_constraintTop_toBottomOf="@+id/numberOfHours"
+                app:layout_constraintStart_toEndOf="@+id/numberOfMinutes"
+                app:layout_constraintWidth_percent="0.6"
+                android:fontFamily="@font/poiret_one"
+                android:text="@string/minutes"
+                android:layout_marginLeft="@dimen/counter_margin_size_horizontal" />
+
+            <TextView
+                android:id="@+id/numberOfSeconds"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/counter_margin_size_vertical"
+                android:textSize="@dimen/counter_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numberOfMinutes"
+                app:layout_constraintWidth_percent="0.4"
+                android:fontFamily="@font/poiret_one"
+                android:textStyle="bold"
+                android:gravity="end"
+                android:text="@{numberOfSecondsVal}"/>
+
+            <TextView
+                android:id="@+id/secondsLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/counter_margin_size_vertical"
+                android:textSize="@dimen/counter_size"
+                app:layout_constraintTop_toBottomOf="@+id/numberOfMinutes"
+                app:layout_constraintStart_toEndOf="@+id/numberOfSeconds"
+                app:layout_constraintWidth_percent="0.6"
+                android:fontFamily="@font/poiret_one"
+                android:text="@string/seconds"
+                android:layout_marginLeft="@dimen/counter_margin_size_horizontal" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

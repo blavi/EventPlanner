@@ -21,8 +21,13 @@
     <string name="name">Nume, prenume:</string>
     <string name="menu">Meniu:</string>
     <string name="table">Masa:</string>
+    <string name="table1">Masa</string>
     <string name="age">Varsta:</string>
     <string name="status">Status:</string>
     <string name="check_in">Inregistrare</string>
     <string name="unexpected_error">Eroare neprevazuta</string>
+    <string name="days">Zile</string>
+    <string name="hours">Ore</string>
+    <string name="minutes">Minute</string>
+    <string name="seconds">Secunde</string>
 </resources>

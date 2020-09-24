@@ -1,7 +1,6 @@
 package com.example.pimpmywed.ui
 
-import android.app.Activity
-import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.example.pimpmywed.R
 import com.example.pimpmywed.database.GuestsEntity
 import com.example.pimpmywed.utils.Constants
 import com.example.pimpmywed.viewmodel.GuestDetailsViewModel
-import kotlinx.coroutines.launch
 
 
 class GuestDetailsDialogFragment : DialogFragment() {
@@ -56,8 +54,19 @@ class GuestDetailsDialogFragment : DialogFragment() {
                     status.setImageResource(R.drawable.ic_not_checked)
                     checkInBtn.visibility = View.VISIBLE
                     checkInBtn.setOnClickListener{
-                        guestDetailsViewModel.updateStatus(guest)
-                        this.dialog?.dismiss()
+                        val launchIntent: Intent? =
+                            activity!!.getPackageManager().getLaunchIntentForPackage("com.google.android.youtube")
+                        if (launchIntent != null) {
+                            startActivity(launchIntent)
+                        } else {
+                            Toast.makeText(
+                                activity,
+                                "There is no package available in android",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+//                        guestDetailsViewModel.updateStatus(guest)
+//                        this.dialog?.dismiss()
                     }
                 } else {
                     status.setImageResource(R.drawable.ic_checked)

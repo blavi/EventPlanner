@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/activity_vertical_margin">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<!--    <ImageView-->
-<!--        android:id="@+id/list_item_genre_icon"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center_vertical"-->
-<!--        android:layout_marginLeft="10dp" />-->
+    <data>
+        <variable name="tableNumber" type="String" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_vertical_margin">
+
+        <!--    <ImageView-->
+        <!--        android:id="@+id/list_item_genre_icon"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_gravity="center_vertical"-->
+        <!--        android:layout_marginLeft="10dp" />-->
 
         <TextView
             android:id="@+id/list_item_table_name"
@@ -19,24 +25,26 @@
             android:layout_alignParentLeft="true"
             android:fontFamily="@font/gafata"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/table_header_size" />
+            android:textSize="@dimen/table_header_size"
+            android:text="@{tableNumber}"/>
 
         <ImageView
             android:id="@+id/list_item_genre_arrow"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/ic_expand_more"
-            android:tint="@color/colorPrimary"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="9dp"/>
+            android:layout_marginRight="9dp"
+            app:tint="@color/colorPrimary" />
 
-    <View
-        android:id="@+id/separator"
-        android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:background="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone"/>
+        <View
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

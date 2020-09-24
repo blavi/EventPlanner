@@ -21,15 +21,11 @@ class LayoutFragment : Fragment() {
         viewpager = root.findViewById(R.id.viewpager_main)
         tabs = root.findViewById(R.id.tabs_main)
 
-        val fragmentAdapter = LayoutPagerAdapter(activity!!.supportFragmentManager, activity!!.applicationContext)
+        val fragmentAdapter = LayoutPagerAdapter(requireActivity().supportFragmentManager, requireContext())
         viewpager.adapter = fragmentAdapter
 
         tabs.setupWithViewPager(viewpager)
 
         return root
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 }

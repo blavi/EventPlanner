@@ -2,8 +2,9 @@ package com.example.pimpmywed.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.pimpmywed.R
 import com.example.pimpmywed.database.GuestsEntity
+import com.example.pimpmywed.databinding.GuestBinding
+import com.example.pimpmywed.databinding.TableBinding
 import com.example.pimpmywed.model.Table
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup
@@ -15,18 +16,16 @@ class AllGuestsAdapter(groups:List<Table>, private val clickListener: (GuestsEnt
     }
 
     override fun onBindChildViewHolder(holder: GuestViewHolder?, flatPosition: Int, group: ExpandableGroup<*>?, childIndex: Int) {
-        val artist = (group as Table).items.get(childIndex)
+        val artist = (group as Table).items[childIndex]
         holder?.onBind(artist, clickListener)
     }
 
     override fun onCreateGroupViewHolder(parent: ViewGroup, viewType:Int):TableViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.table, parent, false)
-        return TableViewHolder(view)
+        return TableViewHolder(TableBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onCreateChildViewHolder(parent:ViewGroup, viewType:Int):GuestViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.guest, parent, false)
-        return GuestViewHolder(view)
+        return GuestViewHolder(GuestBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
 }

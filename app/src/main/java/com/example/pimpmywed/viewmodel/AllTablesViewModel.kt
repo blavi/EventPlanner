@@ -17,16 +17,14 @@ class AllTablesViewModel : ViewModel() {
 
     var guests = MutableLiveData<List<Table>>()
 
-    fun getPersons(forceUpdate : Boolean) {
+    fun getPersons(forceUpdate: Boolean) {
         viewModelScope.launch {
-            val list = PersonsRepository.getInstance().getGuestsByTablesAsync(forceUpdate).await()
+            val list = PersonsRepository.getInstance().getGuestsByTables(forceUpdate)
             updateUI(list)
         }
     }
 
     private fun updateUI(list: List<Table>?) {
-        guests.postValue(
-            list
-        )
+        guests.value = list
     }
 }

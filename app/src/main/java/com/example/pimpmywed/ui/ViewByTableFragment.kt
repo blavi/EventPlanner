@@ -1,6 +1,5 @@
 package com.example.pimpmywed.ui
 
-import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,44 +7,41 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ProgressBar
-import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.pimpmywed.R
 import com.example.pimpmywed.adapter.TableGuestsAdapter
 import com.example.pimpmywed.database.GuestsEntity
+import com.example.pimpmywed.databinding.FragmentViewbytableBinding
 import com.example.pimpmywed.utils.Constants
 import com.example.pimpmywed.viewmodel.ViewByTableViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ViewByTableFragment : Fragment() {
 
     private lateinit var viewByTableViewModel: ViewByTableViewModel
-    private lateinit var guestsList : RecyclerView
-    private lateinit var dropdown : Spinner
+    private lateinit var binding: FragmentViewbytableBinding
+
     private lateinit var dropdownAdapter : ArrayAdapter<String>
     private var itemNumber : Int = 0
-    private lateinit var progressBar : ProgressBar
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        viewByTableViewModel = ViewModelProvider(this).get(ViewByTableViewModel::class.java)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewByTableViewModel = ViewModelProvider(this).get(ViewByTableViewModel::class.java)
-
-        val root = inflater.inflate(R.layout.fragment_viewbytable, container, false)
-        guestsList= root.findViewById(R.id.guestsList)
-        dropdown = root.findViewById(R.id.positionSpinner)
-        progressBar = root.findViewById(R.id.progressbar)
+        binding = FragmentViewbytableBinding.inflate(inflater, container, false)
 
         setupObservers()
         setUI()
 
-        return root
+        return binding.root
     }
 
 
@@ -56,7 +52,7 @@ class ViewByTableFragment : Fragment() {
     }
 
     private fun setUI() {
-        dropdown.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+        binding.positionSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
@@ -73,21 +69,22 @@ class ViewByTableFragment : Fragment() {
     private fun setupObservers() {
         viewByTableViewModel.guests.observe(viewLifecycleOwner, Observer {
             var adapterAll : TableGuestsAdapter = TableGuestsAdapter(it, { guestItem : GuestsEntity -> guestItemClicked(guestItem) })
-            guestsList.layoutManager = LinearLayoutManager(activity)
-            guestsList.adapter = adapterAll
-            guestsList.invalidate()
+            binding.guestsList.layoutManager = LinearLayoutManager(activity)
+            binding.guestsList.adapter = adapterAll
+            binding.guestsList.invalidate()
         })
 
-        viewByTableViewModel.dropdown.observe(viewLifecycleOwner, Observer {
-            dropdownAdapter = ArrayAdapter(activity!!.applicationContext, R.layout.spinner_item, it)
+        viewByTableViewModel.dropdown.observe(viewLifecycleOwner, Observer { list ->
+            val tableValues : List<String> = list.map { getString(R.string.table1 ) + " " + it }
+            dropdownAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item, tableValues)
             dropdownAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            dropdown.adapter = dropdownAdapter
+            binding.positionSpinner.adapter = dropdownAdapter
         })
     }
 
     private fun guestItemClicked(guestItem: GuestsEntity) {
         val pop = GuestDetailsDialogFragment()
-        val fm = fragmentManager!!
+        val fm = parentFragmentManager
 
         val bundle = Bundle()
         bundle.putParcelable(Constants.GUEST_KEY, guestItem)
@@ -108,11 +105,11 @@ class ViewByTableFragment : Fragment() {
     }
 
     private fun hideLoadingDialog() {
-        progressBar.visibility = View.GONE
+        binding.progressbar.visibility = View.GONE
     }
 
     private fun showLoadingDialog() {
-        progressBar.visibility = View.VISIBLE
+        binding.progressbar.visibility = View.VISIBLE
     }
 
     private fun setTables() {

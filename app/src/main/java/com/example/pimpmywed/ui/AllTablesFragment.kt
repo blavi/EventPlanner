@@ -5,17 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.pimpmywed.R
 import com.example.pimpmywed.adapter.AllGuestsAdapter
 import com.example.pimpmywed.database.GuestsEntity
+import com.example.pimpmywed.databinding.FragmentNotificationsBinding
 import com.example.pimpmywed.utils.Constants
 import com.example.pimpmywed.viewmodel.AllTablesViewModel
 import kotlinx.coroutines.delay
@@ -25,20 +23,21 @@ import kotlinx.coroutines.launch
 class AllTablesFragment : Fragment() {
 
     private lateinit var allTablesViewModel: AllTablesViewModel
-    private lateinit var guestsList : RecyclerView
-    private lateinit var progressBar : ProgressBar
+    private lateinit var binding: FragmentNotificationsBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        allTablesViewModel = ViewModelProvider(this).get(AllTablesViewModel::class.java)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        allTablesViewModel = ViewModelProvider(this).get(AllTablesViewModel::class.java)
-
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        guestsList= root.findViewById(R.id.guestsList)
-        progressBar = root.findViewById(R.id.progressbar)
+        binding = FragmentNotificationsBinding.inflate(inflater, container, false)
 
         setUI()
         setupObservers()
 
-        return root
+        return binding.root
     }
 
     override fun onResume() {
@@ -48,23 +47,23 @@ class AllTablesFragment : Fragment() {
     }
 
     private fun setUI() {
-        val animator = guestsList.getItemAnimator()
+        val animator = binding.guestsList.getItemAnimator()
         if (animator is DefaultItemAnimator) {
-            (animator as DefaultItemAnimator).setSupportsChangeAnimations(false)
+            (animator as DefaultItemAnimator).supportsChangeAnimations = false
         }
     }
 
     private fun setupObservers() {
         allTablesViewModel.guests.observe(viewLifecycleOwner, Observer {
             var adapterAll : AllGuestsAdapter = AllGuestsAdapter(it, { guestItem : GuestsEntity -> guestItemClicked(guestItem) })
-            guestsList.setLayoutManager(LinearLayoutManager(activity))
-            guestsList.setAdapter(adapterAll)
+            binding.guestsList.layoutManager = LinearLayoutManager(activity)
+            binding.guestsList.adapter = adapterAll
         })
     }
 
     private fun guestItemClicked(guestItem: GuestsEntity) {
         val pop = GuestDetailsDialogFragment()
-        val fm = fragmentManager!!
+        val fm = parentFragmentManager
 
         val bundle = Bundle()
         bundle.putParcelable(Constants.GUEST_KEY, guestItem)
@@ -81,16 +80,15 @@ class AllTablesFragment : Fragment() {
 
                 hideLoadingDialog()
             }
-
         })
     }
 
     private fun hideLoadingDialog() {
-        progressBar.visibility = View.GONE
+        binding.progressbar.visibility = View.GONE
     }
 
     private fun showLoadingDialog() {
-        progressBar.visibility = View.VISIBLE
+        binding.progressbar.visibility = View.VISIBLE
     }
 
     private fun setCurrentState(forceUpdate : Boolean) {

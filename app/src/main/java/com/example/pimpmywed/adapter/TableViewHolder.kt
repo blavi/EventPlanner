@@ -1,29 +1,18 @@
 package com.example.pimpmywed.adapter
 
-import android.provider.Settings.Global.getString
 import android.view.View
 import android.view.animation.Animation.RELATIVE_TO_SELF
 import android.view.animation.RotateAnimation
-import android.widget.ImageView
-import android.widget.TextView
 import com.example.pimpmywed.R
+import com.example.pimpmywed.databinding.TableBinding
 import com.example.pimpmywed.model.Table
 import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder
 
 
-class TableViewHolder(itemView: View) : GroupViewHolder(itemView) {
-    private val tableNumber : TextView
-    private val arrow : ImageView
-    private val separator : View
-
-    init{
-        tableNumber = itemView.findViewById(R.id.list_item_table_name)
-        arrow = itemView.findViewById(R.id.list_item_genre_arrow)
-        separator = itemView.findViewById(R.id.separator)
-    }
+class TableViewHolder(private val binding: TableBinding) : GroupViewHolder(binding.root) {
 
     fun setTableNumber(group: Table) {
-        tableNumber.text = itemView.context.getString(R.string.table_label) + " " + group.getTitle()
+        binding.tableNumber = itemView.context.getString(R.string.table_label) + " " + group.title
     }
 
     override fun expand() {
@@ -38,17 +27,17 @@ class TableViewHolder(itemView: View) : GroupViewHolder(itemView) {
         val rotate = RotateAnimation(360.0F, 180.0F, RELATIVE_TO_SELF, 0.5f, RELATIVE_TO_SELF, 0.5f)
         rotate.duration = 300
         rotate.fillAfter = true
-        arrow.setAnimation(rotate)
+        binding.listItemGenreArrow.animation = rotate
 
-        separator.visibility = View.VISIBLE
+        binding.separator.visibility = View.VISIBLE
     }
 
     private fun animateCollapse() {
         val rotate = RotateAnimation(180.0F, 360.0F, RELATIVE_TO_SELF, 0.5f, RELATIVE_TO_SELF, 0.5f)
         rotate.duration = 300
         rotate.fillAfter = true
-        arrow.animation = rotate
+        binding.listItemGenreArrow.animation = rotate
 
-        separator.visibility = View.GONE
+        binding.separator.visibility = View.GONE
     }
 }

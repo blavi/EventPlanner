@@ -6,10 +6,9 @@ import com.example.pimpmywed.api.ApiProvider
 import com.example.pimpmywed.database.GuestsEntity
 import com.example.pimpmywed.repository.PersonsRepository
 import com.example.pimpmywed.utils.Constants
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel : ViewModel() {
 //    private val klaxon = Klaxon()
 //    private var persons : List<Guest>
     private var apiProvider: ApiProvider = ApiProvider()
@@ -36,76 +35,47 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
      fun getPersons(forceUpdate : Boolean) {
          viewModelScope.launch {
-             updateUI(PersonsRepository.getInstance().getPersonsAsync(forceUpdate).await())
+             updateUI(PersonsRepository.getInstance().getPersons(forceUpdate))
          }
     }
 
     private fun updateUI(list: List<GuestsEntity>?) {
         if (!list.isNullOrEmpty()) {
             // LIVE DATA
-             totalNumberOfInvitedPersons = liveData<String>(Dispatchers.IO) {
-                  emit( (list.sumBy { it.invited_number.toInt()}).toString() )
-             } as MutableLiveData<String>
+//             totalNumberOfInvitedPersons = liveData<String> {
+//                  emit( (list.sumBy { it.invited_number.toInt()}).toString() )
+//             } as MutableLiveData<String>
 
-            totalNumberOfInvitedPersons.postValue(
-                (list.sumBy { it.invited_number.toInt()}).toString()
-            )
+            totalNumberOfInvitedPersons.value = list.sumBy { it.invited_number.toInt()}
+                                                    .toString()
 
-            totalNumberOfGuests.postValue(
-                (list.filter {
-                    it.confirmed_number != ""
-                }.sumBy { it.confirmed_number.toInt() }).toString()
-            )
-
-            totalOfClassicGuests.postValue(
-                (list.filter {
-                    it.menu.equals(Constants.CLASSIC_MENU)
-                }.sumBy { it.confirmed_number.toInt() }).toString()
-            )
-
-            totalOfVegetarianGuests.postValue(
-                (list.filter {
-                    it.menu.equals(Constants.VEGETARIAN_MENU)
-                }.sumBy { it.confirmed_number.toInt() }).toString()
-            )
-
-            totalOfChildrenGuests.postValue(
-                (list.filter {
-                    it.menu.equals(Constants.CHILDREN_MENU)
-                }.sumBy { it.confirmed_number.toInt() }).toString()
-            )
-
-            totalOfCheckedInGuests.postValue(
-                (list
-                    .filter {
-                        it.confirmed_number != ""
-                    }
-                    .filter {
-                        it.checked.equals(Constants.CHECKED_IN)
-                    }
-                    .sumBy { it.confirmed_number.toInt() }).toString()
-            )
-
-            totalOfNotCheckedInGuests.postValue(
-                (list
-                    .filter {
-                        it.confirmed_number != ""
-                    }
-                    .filter {
-                        it.checked.equals(Constants.NOT_CHECKED_IN)
-                    }
-                    .sumBy { it.confirmed_number.toInt() }).toString()
-            )
+            totalNumberOfGuests.value = list.filter { it.confirmed_number != "" }
+                                            .sumBy { it.confirmed_number.toInt() }
+                                            .toString()
 
 
-        } else {
-            totalNumberOfInvitedPersons.postValue(
-                "0"
-            )
+            totalOfClassicGuests.value = list.filter { it.menu.equals(Constants.CLASSIC_MENU) }
+                                             .sumBy { it.confirmed_number.toInt() }
+                                             .toString()
 
-            totalNumberOfGuests.postValue(
-                "0"
-            )
+
+            totalOfVegetarianGuests.value = list.filter { it.menu.equals(Constants.VEGETARIAN_MENU) }
+                                                .sumBy { it.confirmed_number.toInt() }
+                                                .toString()
+
+
+            totalOfChildrenGuests.value = list.filter { it.menu.equals(Constants.CHILDREN_MENU) }
+                                              .sumBy { it.confirmed_number.toInt() }
+                                              .toString()
+
+
+            totalOfCheckedInGuests.value = list.filter { it.confirmed_number != "" }
+                                               .filter { it.checked.equals(Constants.CHECKED_IN) }
+                                               .sumBy { it.confirmed_number.toInt() }.toString()
+
+            totalOfNotCheckedInGuests.value = list.filter {it.confirmed_number != "" }
+                                                  .filter { it.checked.equals(Constants.NOT_CHECKED_IN) }
+                                                  .sumBy { it.confirmed_number.toInt() }.toString()
         }
     }
 }

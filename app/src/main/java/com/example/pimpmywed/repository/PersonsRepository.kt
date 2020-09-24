@@ -26,100 +26,94 @@ class PersonsRepository private constructor() {
             }
     }
 
-    @Synchronized suspend fun getPersonsAsync(forceUpdate: Boolean) : Deferred<List<GuestsEntity>> = withContext(Dispatchers.IO) {
-        async {
-            getDataAndSaveToDBAsync(forceUpdate).await()
-            // GET FROM LOCAL DATABASE
-            getDataFromDB()
-        }
+    suspend fun getPersons(forceUpdate: Boolean) : List<GuestsEntity> = withContext(Dispatchers.IO) {
+        getDataAndSaveToDB(forceUpdate)
+        // GET FROM LOCAL DATABASE
+        getDataFromDB()
     }
 
-    suspend fun getGuestsBasedOnQueryAsync(forceUpdate: Boolean, query : String) : Deferred<List<GuestsEntity>> = withContext(Dispatchers.IO) {
-        async {
-            val persons : List<GuestsEntity> = getPersonsAsync(forceUpdate).await()
+    suspend fun getGuestsBasedOnQuery(forceUpdate: Boolean, query : String) : List<GuestsEntity> = withContext(Dispatchers.IO) {
+        val persons : List<GuestsEntity> = getPersons(forceUpdate)
 
-            val filteredGuests = persons
-                .filter {
-                    it.name.startsWith(query, true)
-                }
-                .filter {
-                    !it.confirmed_number.equals("")
-                }
-
-            filteredGuests
-        }
-    }
-
-    suspend fun getTablesAsync(forceUpdate: Boolean) : Deferred<List<String>> = withContext(Dispatchers.IO) {
-        async {
-            val persons : List<GuestsEntity> = getPersonsAsync(forceUpdate).await()
-            // GET FROM LOCAL DATABASE
-            val tables : List<String> = persons
-                .filter {
-                    it.table != "0"}
-                .filter {
-                    !it.confirmed_number.equals("")
-                }
-                .sortedWith (
-                    compareBy {it.table.toInt()}
-                )
-                .map { it -> it.table }
-                .distinct()
-
-            tables
-        }
-    }
-
-    suspend fun getGuestsFromTableAsync(number : Int, forceUpdate: Boolean) : Deferred<List<GuestsEntity>> = withContext(Dispatchers.IO) {
-        async {
-            val persons = getPersonsAsync(forceUpdate).await()
-
-            val groupedPersons = persons
-                .filter {
-                    it.table.toInt() == number
-                }
-                .filter {
-                    !it.confirmed_number.equals("")
-                }
-
-            groupedPersons
-        }
-    }
-
-    suspend fun getGuestsByTablesAsync(forceUpdate: Boolean) : Deferred<List<Table>> = withContext(Dispatchers.IO) {
-        async {
-            val persons = getPersonsAsync(forceUpdate).await()
-            val groupedPersons = persons
-                .filter {
-                    it.table != "0"
-                }
-                .filter {
-                    !it.confirmed_number.equals("")
-                }
-                .sortedWith (
-                    compareBy {it.table.toInt()}
-                )
-                .groupBy {
-                    it.table
-                }.map { (key, value) ->
-                    Table(key, value)
-                }
-            groupedPersons
-        }
-    }
-
-    @Synchronized private suspend fun getDataAndSaveToDBAsync(forceUpdate : Boolean)  = withContext(Dispatchers.IO) {
-        async {
-            if (RepositoryUtil.isCacheStale() || forceUpdate) {
-                    // FETCH DATA FROM NETWORK
-                    var list = getDataFromAPIAsync().await()
-
-                    RepositoryUtil.resetCache()
-
-                    // SAVE TO DB
-                    saveToDB(list)
-//                }
+        val filteredGuests = persons
+            .filter {
+                it.name.startsWith(query, true)
             }
+            .filter {
+                !it.confirmed_number.equals("")
+            }
+
+        filteredGuests
+    }
+
+    suspend fun getTables(forceUpdate: Boolean) : List<String> = withContext(Dispatchers.IO) {
+        val persons : List<GuestsEntity> = getPersons(forceUpdate)
+        // GET FROM LOCAL DATABASE
+        val tables : List<String> = persons
+            .asSequence()
+            .filter {
+                it.table != "0"}
+            .filter {
+                !it.confirmed_number.equals("")
+            }
+            .sortedWith (
+                compareBy {it.table.toInt()}
+            )
+            .map { it -> it.table }
+            .distinct()
+            .toList()
+
+        tables
+    }
+
+    suspend fun getGuestsFromTable(number : Int, forceUpdate: Boolean) : List<GuestsEntity> = withContext(Dispatchers.IO) {
+        val persons = getPersons(forceUpdate)
+
+        val groupedPersons = persons
+            .asSequence()
+            .filter {
+                it.table.toInt() == number
+            }
+            .filter {
+                !it.confirmed_number.equals("")
+            }
+            .toList()
+
+        groupedPersons
+    }
+
+    suspend fun getGuestsByTables(forceUpdate: Boolean) : List<Table> = withContext(Dispatchers.IO) {
+        val persons = getPersons(forceUpdate)
+        val groupedPersons = persons
+            .asSequence()
+            .filter {
+                it.table != "0"
+            }
+            .filter {
+                !it.confirmed_number.equals("")
+            }
+            .sortedWith (
+                compareBy {it.table.toInt()}
+            )
+            .groupBy {
+                it.table
+            }.map { (key, value) ->
+                Table(key, value)
+            }
+            .toList()
+        groupedPersons
+    }
+
+    private suspend fun getDataAndSaveToDB(forceUpdate : Boolean)  = withContext(Dispatchers.IO) {
+        if (RepositoryUtil.isCacheStale() || forceUpdate) {
+
+            RepositoryUtil.resetCache()
+
+            // FETCH DATA FROM NETWORK
+            var list = getDataFromAPI()
+
+            // SAVE TO DB
+            saveToDB(list)
         }
     }
 
@@ -131,7 +125,7 @@ class PersonsRepository private constructor() {
 //        return guests ?: ArrayList<GuestsEntity>()
 //    }
 
-    @Synchronized private fun getDataFromDB() : List<GuestsEntity> {
+    private fun getDataFromDB() : List<GuestsEntity> {
         var db = PimpMyWedApp.db
 
         var guests =  db?.guestsDAO()?.getGuests()
@@ -139,7 +133,7 @@ class PersonsRepository private constructor() {
         return guests ?: ArrayList<GuestsEntity>()
     }
 
-    @Synchronized private  fun saveToDB(list : Set<List<String>>) {
+    private  fun saveToDB(list : Set<List<String>>) {
         var db = PimpMyWedApp.db
 
         var dao = db?.guestsDAO()
@@ -162,46 +156,41 @@ class PersonsRepository private constructor() {
         }
 
         dao?.insertAll(guests)
-//        return guests
     }
 
-    private suspend fun getDataFromAPIAsync() : Deferred<Set<List<String>>> = withContext(Dispatchers.IO) {
-        async {
-            try {
-                val response1 = async { apiProvider.getData("Rude_Lavi!A3:I41") }
-                val response2 = async { apiProvider.getData("Cunostinte_Lavi!A3:I44") }
-                val response3 = async { apiProvider.getData("Rude_Dani!A3:I6") }
-                val response4 = async { apiProvider.getData("Cunostinte_Dani!A3:I28") }
+    private suspend fun getDataFromAPI() : Set<List<String>> = withContext(Dispatchers.IO) {
+        try {
+            val response1 = async { apiProvider.getData("Rude_Lavi!A3:I41") }
+            val response2 = async { apiProvider.getData("Cunostinte_Lavi!A3:I44") }
+            val response3 = async { apiProvider.getData("Rude_Dani!A3:I6") }
+            val response4 = async { apiProvider.getData("Cunostinte_Dani!A3:I28") }
 
-                val list1 = response1.await().body()!!.values
-                val list2 = response2.await().body()!!.values
-                val list3 = response3.await().body()!!.values
-                val list4 = response4.await().body()!!.values
+            val list1 = response1.await().body()!!.values
+            val list2 = response2.await().body()!!.values
+            val list3 = response3.await().body()!!.values
+            val list4 = response4.await().body()!!.values
 
-                var list = list1.union(list2).union(list3).union(list4)
+            var list = list1.union(list2).union(list3).union(list4)
 
-                list
+            list
 
-            } catch (exception: Exception) {
-                setOf(ArrayList<String>())
-            }
+        } catch (exception: Exception) {
+            setOf(ArrayList<String>())
         }
     }
 
-    suspend fun updateGuestStatusAsync(body: ValueRange, sheetName: String, row: String) = withContext(Dispatchers.IO)  {
-        async {
+    suspend fun updateGuestStatus(body: ValueRange, sheetName: String, row: String) = withContext(Dispatchers.IO)  {
 
-            val jsonFactory = JacksonFactory.getDefaultInstance()
-            val httpTransport =  AndroidHttp.newCompatibleTransport()
-            val service = Sheets.Builder(httpTransport, jsonFactory, PimpMyWedApp.credentials)
-                .setApplicationName("PimpMyWed")
-                .build()
+        val jsonFactory = JacksonFactory.getDefaultInstance()
+        val httpTransport =  AndroidHttp.newCompatibleTransport()
+        val service = Sheets.Builder(httpTransport, jsonFactory, PimpMyWedApp.credentials)
+            .setApplicationName("PimpMyWed")
+            .build()
 
-            service.spreadsheets().values().update(Constants.SHEET_ID,
-                "$sheetName!A$row:I$row", body)
-                .setValueInputOption("USER_ENTERED")
-                .execute()
+        service.spreadsheets().values().update(Constants.SHEET_ID,
+            "$sheetName!A$row:I$row", body)
+            .setValueInputOption("USER_ENTERED")
+            .execute()
 
-        }
     }
 }

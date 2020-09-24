@@ -34,7 +34,7 @@ class GuestDetailsViewModel : ViewModel() {
                 else -> "Cunostinte_Dani"
             }
             val row : String = guest.identifier.substring(guest.identifier.indexOf(":") + 1)
-            PersonsRepository.getInstance().updateGuestStatusAsync(body, sheetName, row).await()
+            PersonsRepository.getInstance().updateGuestStatus(body, sheetName, row)
         }
     }
 }
