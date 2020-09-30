@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,18 +17,13 @@ import com.example.pimpmywed.utils.Constants
 import com.example.pimpmywed.viewmodel.AllTablesViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class AllTablesFragment : Fragment() {
 
-    private lateinit var allTablesViewModel: AllTablesViewModel
+    private val allTablesViewModel: AllTablesViewModel  by viewModel()
     private lateinit var binding: FragmentNotificationsBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        allTablesViewModel = ViewModelProvider(this).get(AllTablesViewModel::class.java)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false)
@@ -71,7 +65,7 @@ class AllTablesFragment : Fragment() {
 
         pop.show(fm, "name")
 
-        fm.executePendingTransactions();
+        fm.executePendingTransactions()
         pop.dialog?.setOnDismissListener(DialogInterface.OnDismissListener {
             lifecycleScope.launch {
                 showLoadingDialog()

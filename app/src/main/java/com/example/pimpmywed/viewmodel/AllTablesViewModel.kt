@@ -8,7 +8,7 @@ import com.example.pimpmywed.model.Table
 import com.example.pimpmywed.repository.PersonsRepository
 import kotlinx.coroutines.launch
 
-class AllTablesViewModel : ViewModel() {
+class AllTablesViewModel(private val personsRepository: PersonsRepository) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment"
@@ -19,7 +19,7 @@ class AllTablesViewModel : ViewModel() {
 
     fun getPersons(forceUpdate: Boolean) {
         viewModelScope.launch {
-            val list = PersonsRepository.getInstance().getGuestsByTables(forceUpdate)
+            val list = personsRepository.getGuestsByTables(forceUpdate)
             updateUI(list)
         }
     }

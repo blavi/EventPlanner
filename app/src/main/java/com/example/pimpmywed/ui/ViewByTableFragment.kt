@@ -9,7 +9,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pimpmywed.R
@@ -20,20 +19,16 @@ import com.example.pimpmywed.utils.Constants
 import com.example.pimpmywed.viewmodel.ViewByTableViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class ViewByTableFragment : Fragment() {
 
-    private lateinit var viewByTableViewModel: ViewByTableViewModel
+    private val viewByTableViewModel: ViewByTableViewModel by viewModel()
     private lateinit var binding: FragmentViewbytableBinding
 
     private lateinit var dropdownAdapter : ArrayAdapter<String>
     private var itemNumber : Int = 0
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        viewByTableViewModel = ViewModelProvider(this).get(ViewByTableViewModel::class.java)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentViewbytableBinding.inflate(inflater, container, false)

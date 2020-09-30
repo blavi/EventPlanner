@@ -1,17 +1,17 @@
 package com.example.pimpmywed.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.*
-import com.example.pimpmywed.api.ApiProvider
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.pimpmywed.database.GuestsEntity
 import com.example.pimpmywed.repository.PersonsRepository
 import com.example.pimpmywed.utils.Constants
 import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val personsRepository: PersonsRepository) : ViewModel() {
 //    private val klaxon = Klaxon()
 //    private var persons : List<Guest>
-    private var apiProvider: ApiProvider = ApiProvider()
+//    private var apiProvider: ApiProvider = ApiProvider()
 
     var totalNumberOfGuests = MutableLiveData<String>()
 
@@ -35,7 +35,7 @@ class HomeViewModel : ViewModel() {
 
      fun getPersons(forceUpdate : Boolean) {
          viewModelScope.launch {
-             updateUI(PersonsRepository.getInstance().getPersons(forceUpdate))
+             updateUI(personsRepository.getPersons(forceUpdate))
          }
     }
 

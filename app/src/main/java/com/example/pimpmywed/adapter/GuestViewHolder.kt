@@ -1,8 +1,5 @@
 package com.example.pimpmywed.adapter
 
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import com.example.pimpmywed.R
 import com.example.pimpmywed.database.GuestsEntity
 import com.example.pimpmywed.databinding.GuestBinding

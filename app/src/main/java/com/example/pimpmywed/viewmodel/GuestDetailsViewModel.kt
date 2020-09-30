@@ -8,7 +8,7 @@ import com.example.pimpmywed.utils.Constants
 import com.google.api.services.sheets.v4.model.ValueRange
 import kotlinx.coroutines.launch
 
-class GuestDetailsViewModel : ViewModel() {
+class GuestDetailsViewModel(private val personsRepository: PersonsRepository) : ViewModel() {
     fun updateStatus(guest: GuestsEntity) {
         viewModelScope.launch {
             val values: List<List<String?>> =
@@ -34,7 +34,7 @@ class GuestDetailsViewModel : ViewModel() {
                 else -> "Cunostinte_Dani"
             }
             val row : String = guest.identifier.substring(guest.identifier.indexOf(":") + 1)
-            PersonsRepository.getInstance().updateGuestStatus(body, sheetName, row)
+            personsRepository.updateGuestStatus(body, sheetName, row)
         }
     }
 }

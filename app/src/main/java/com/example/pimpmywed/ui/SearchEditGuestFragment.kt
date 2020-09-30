@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pimpmywed.R
@@ -21,19 +20,14 @@ import com.example.pimpmywed.utils.*
 import com.example.pimpmywed.viewmodel.SearchGuestsViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchEditGuestFragment : Fragment() {
 
-    private lateinit var searchGuestsViewModel: SearchGuestsViewModel
+    private val searchGuestsViewModel: SearchGuestsViewModel by viewModel()
     private lateinit var binding: FragmentSearchEditBinding
 
     private lateinit var editableQuery : Editable
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        searchGuestsViewModel = ViewModelProvider(this).get(SearchGuestsViewModel::class.java)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

@@ -3,7 +3,6 @@ package com.example.pimpmywed.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pimpmywed.R
 import com.example.pimpmywed.database.GuestsEntity
 import com.example.pimpmywed.databinding.GuestBinding
 

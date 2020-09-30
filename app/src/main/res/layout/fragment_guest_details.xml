@@ -1,155 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minWidth="300dp"
-    android:minHeight="300dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/guest_left_margin_size"
-    android:layout_gravity="center">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/nameLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/table_content_size"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.4"
-        android:text="@string/name"
-        android:fontFamily="@font/poiret_one"
-        android:textStyle="bold" />
+    <data>
+        <variable name="name" type="String" />
+        <variable name="menu" type="String" />
+        <variable name="table" type="String" />
+        <variable name="age" type="String" />
+        <variable name="status" type="Integer" />
+    </data>
 
-    <TextView
-        android:id="@+id/nameVal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:textSize="@dimen/table_content_size"
-        app:layout_constraintStart_toEndOf="@+id/nameLabel"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.6"
-        android:fontFamily="@font/gafata"
-        android:textStyle="bold"
-        android:layout_gravity="start"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/menuLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:textSize="@dimen/table_content_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameLabel"
-        app:layout_constraintWidth_percent="0.4"
-        android:text="@string/menu"
-        android:fontFamily="@font/poiret_one"
-        android:textStyle="bold"/>
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="300dp"
+            android:minHeight="300dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:padding="@dimen/guest_left_margin_size"
+            android:layout_gravity="center">
 
-    <TextView
-        android:id="@+id/menuVal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:textSize="@dimen/table_content_size"
-        app:layout_constraintTop_toBottomOf="@+id/nameLabel"
-        app:layout_constraintStart_toEndOf="@+id/menuLabel"
-        app:layout_constraintWidth_percent="0.6"
-        android:fontFamily="@font/gafata"
-        android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/nameLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/table_content_size"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.4"
+                android:text="@string/name"
+                android:fontFamily="@font/poiret_one"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tableLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        app:layout_constraintWidth_percent="0.4"
-        android:textSize="@dimen/table_content_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menuLabel"
-        android:text="@string/table"
-        android:fontFamily="@font/poiret_one"
-        android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/nameVal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/table_content_size"
+                app:layout_constraintStart_toEndOf="@+id/nameLabel"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.6"
+                android:fontFamily="@font/gafata"
+                android:textStyle="bold"
+                android:layout_gravity="start"
+                android:text="@{name}"/>
 
-    <TextView
-        android:id="@+id/tableVal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:textSize="@dimen/table_content_size"
-        app:layout_constraintWidth_percent="0.6"
-        app:layout_constraintTop_toBottomOf="@+id/menuLabel"
-        app:layout_constraintStart_toEndOf="@+id/tableLabel"
-        android:fontFamily="@font/gafata"
-        android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/menuLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/table_content_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameLabel"
+                app:layout_constraintWidth_percent="0.4"
+                android:text="@string/menu"
+                android:fontFamily="@font/poiret_one"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/ageLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:textSize="@dimen/table_content_size"
-        app:layout_constraintWidth_percent="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLabel"
-        android:text="@string/age"
-        android:fontFamily="@font/poiret_one"
-        android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/menuVal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/table_content_size"
+                app:layout_constraintTop_toBottomOf="@+id/nameLabel"
+                app:layout_constraintStart_toEndOf="@+id/menuLabel"
+                app:layout_constraintWidth_percent="0.6"
+                android:fontFamily="@font/gafata"
+                android:textStyle="bold"
+                android:text="@{menu}"/>
 
-    <TextView
-        android:id="@+id/ageVal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:textSize="@dimen/table_content_size"
-        app:layout_constraintWidth_percent="0.6"
-        app:layout_constraintTop_toBottomOf="@+id/tableLabel"
-        app:layout_constraintStart_toEndOf="@+id/ageLabel"
-        android:fontFamily="@font/gafata"
-        android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tableLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                app:layout_constraintWidth_percent="0.4"
+                android:textSize="@dimen/table_content_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/menuLabel"
+                android:text="@string/table"
+                android:fontFamily="@font/poiret_one"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/statusLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:textSize="@dimen/table_content_size"
-        app:layout_constraintWidth_percent="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ageLabel"
-        android:text="@string/status"
-        android:fontFamily="@font/poiret_one"
-        android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tableVal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/table_content_size"
+                app:layout_constraintWidth_percent="0.6"
+                app:layout_constraintTop_toBottomOf="@+id/menuLabel"
+                app:layout_constraintStart_toEndOf="@+id/tableLabel"
+                android:fontFamily="@font/gafata"
+                android:textStyle="bold"
+                android:text="@{table}"/>
 
-    <ImageView
-        android:id="@+id/statusVal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        app:layout_constraintWidth_percent="0.6"
-        app:layout_constraintTop_toBottomOf="@+id/ageLabel"
-        app:layout_constraintStart_toEndOf="@+id/statusLabel"
-        android:scaleType="fitStart"/>
+            <TextView
+                android:id="@+id/ageLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/table_content_size"
+                app:layout_constraintWidth_percent="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tableLabel"
+                android:text="@string/age"
+                android:fontFamily="@font/poiret_one"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/checkInBtn"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statusLabel"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:background="@color/colorPrimary"
-        android:text="@string/check_in"
-        android:fontFamily="@font/gafata"
-        android:textSize="@dimen/table_content_size"
-        android:textColor="@android:color/white"
-        android:visibility="gone"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+            <TextView
+                android:id="@+id/ageVal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/table_content_size"
+                app:layout_constraintWidth_percent="0.6"
+                app:layout_constraintTop_toBottomOf="@+id/tableLabel"
+                app:layout_constraintStart_toEndOf="@+id/ageLabel"
+                android:fontFamily="@font/gafata"
+                android:textStyle="bold"
+                android:text="@{age}"/>
+
+            <TextView
+                android:id="@+id/statusLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textSize="@dimen/table_content_size"
+                app:layout_constraintWidth_percent="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ageLabel"
+                android:text="@string/status"
+                android:fontFamily="@font/poiret_one"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/statusVal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                app:layout_constraintWidth_percent="0.6"
+                app:layout_constraintTop_toBottomOf="@+id/ageLabel"
+                app:layout_constraintStart_toEndOf="@+id/statusLabel"
+                android:scaleType="fitStart"
+                app:imageResource="@{status}"/>
+
+            <Button
+                android:id="@+id/checkInBtn"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/statusLabel"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="@color/colorPrimary"
+                android:text="@string/check_in"
+                android:fontFamily="@font/gafata"
+                android:textSize="@dimen/table_content_size"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

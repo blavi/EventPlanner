@@ -62,4 +62,8 @@ data class GuestsEntity (
             return arrayOfNulls(size)
         }
     }
+
+    fun isChecked(): Boolean {
+        return checked == "0"
+    }
 }

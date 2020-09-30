@@ -10,9 +10,12 @@ import com.example.pimpmywed.utils.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.mapLatest
 
-class SearchGuestsViewModel : ViewModel() {
+class SearchGuestsViewModel(private val personsRepository: PersonsRepository) : ViewModel() {
     private var forceQueryUpdate: Boolean = false
     companion object {
         const val SEARCH_DELAY_MS = 500L
@@ -40,7 +43,7 @@ class SearchGuestsViewModel : ViewModel() {
             try {
                 if (it.length >= MIN_QUERY_LENGTH) {
                     val searchResult = withContext(Dispatchers.IO) {
-                        PersonsRepository.getInstance().getGuestsBasedOnQuery(forceQueryUpdate, it)
+                        personsRepository.getGuestsBasedOnQuery(forceQueryUpdate, it)
                     }
 
                     if (searchResult.isNotEmpty()) {

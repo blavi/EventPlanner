@@ -5,71 +5,48 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.pimpmywed.R
 import com.example.pimpmywed.database.GuestsEntity
+import com.example.pimpmywed.databinding.FragmentGuestDetailsBinding
 import com.example.pimpmywed.utils.Constants
 import com.example.pimpmywed.viewmodel.GuestDetailsViewModel
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GuestDetailsDialogFragment : DialogFragment() {
-    private lateinit var guestDetailsViewModel: GuestDetailsViewModel
-    private lateinit var name : TextView
-    private lateinit var menu : TextView
-    private lateinit var table : TextView
-    private lateinit var age : TextView
-    private lateinit var status : ImageView
-    private lateinit var checkInBtn : Button
+    private val guestDetailsViewModel: GuestDetailsViewModel by viewModel()
+    private lateinit var binding: FragmentGuestDetailsBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        guestDetailsViewModel = ViewModelProvider(this).get(GuestDetailsViewModel::class.java)
 
-        var myView = inflater.inflate(R.layout.fragment_guest_details, container, false)
-
-        name = myView.findViewById(R.id.nameVal)
-        menu = myView.findViewById(R.id.menuVal)
-        age = myView.findViewById(R.id.ageVal)
-        table = myView.findViewById(R.id.tableVal)
-        status = myView.findViewById(R.id.statusVal)
-        checkInBtn = myView.findViewById(R.id.checkInBtn)
+        binding = FragmentGuestDetailsBinding.inflate(inflater, container, false)
 
         setUI(arguments?.get(Constants.GUEST_KEY) as GuestsEntity)
 
-        return myView
+        return binding.root
     }
 
     private fun setUI(guest: GuestsEntity?) {
         if (guest != null) {
-                name.text = guest.name
-                menu.text = guest.menu
-                age.text = guest.age
-                table.text = guest.table
+                binding.name = guest.name
+                binding.menu = guest.menu
+                binding.age = guest.age
+                binding.table = guest.table
 
-                if (guest.checked.equals("0")) {
-                    status.setImageResource(R.drawable.ic_not_checked)
-                    checkInBtn.visibility = View.VISIBLE
-                    checkInBtn.setOnClickListener{
-                        val launchIntent: Intent? =
-                            activity!!.getPackageManager().getLaunchIntentForPackage("com.google.android.youtube")
+                if (guest.isChecked()) {
+                    binding.status = R.drawable.ic_not_checked
+                    binding.checkInBtn.visibility = View.VISIBLE
+                    binding.checkInBtn.setOnClickListener{
+                        val launchIntent: Intent? = requireActivity().packageManager.getLaunchIntentForPackage("com.google.android.youtube")
                         if (launchIntent != null) {
                             startActivity(launchIntent)
                         } else {
-                            Toast.makeText(
-                                activity,
-                                "There is no package available in android",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            Toast.makeText(activity, "There is no package available in android", Toast.LENGTH_LONG).show()
                         }
-//                        guestDetailsViewModel.updateStatus(guest)
-//                        this.dialog?.dismiss()
                     }
                 } else {
-                    status.setImageResource(R.drawable.ic_checked)
+                    binding.status = R.drawable.ic_checked
                 }
             }
     }

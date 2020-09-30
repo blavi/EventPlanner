@@ -16,7 +16,7 @@ object RetrofitService {
         .client(client)
         .build()
 
-    public fun <S> createService(serviceClass: Class<S>): S {
+    fun <S> createService(serviceClass: Class<S>): S {
         return retrofit.create(serviceClass)
     }
 }

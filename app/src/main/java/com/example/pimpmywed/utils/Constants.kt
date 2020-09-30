@@ -16,5 +16,7 @@ class Constants {
 
         const val CHECKED_IN = "1"
         const val NOT_CHECKED_IN = "0"
+
+        const val BASE_URL = "https://sheets.googleapis.com/v4/spreadsheets/"
     }
 }

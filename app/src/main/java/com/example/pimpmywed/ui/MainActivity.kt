@@ -1,10 +1,7 @@
 package com.example.pimpmywed.ui
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.annotation.RestrictTo
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,10 +12,8 @@ import com.example.pimpmywed.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.Scope
-import com.google.api.client.extensions.android.http.AndroidHttp
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential
-import com.google.api.client.json.jackson2.JacksonFactory
-import com.google.api.services.sheets.v4.Sheets
 import com.google.api.services.sheets.v4.SheetsScopes
 import com.jakewharton.threetenabp.AndroidThreeTen
 
@@ -80,7 +75,6 @@ class MainActivity : AppCompatActivity() {
                         PimpMyWedApp.credentials.selectedAccount = account.account
                     }
                     .addOnFailureListener { e ->
-//                        Timber.e(e)
                     }
             }
         }

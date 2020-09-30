@@ -9,7 +9,7 @@
     <string name="all_tables">All Tables</string>
     <string name="search_error">An error occurred</string>
     <string name="empty_result">Guest not found</string>
-    <string name="not_enough_characters">Not enough charachters</string>
+    <string name="not_enough_characters">Not enough characters</string>
     <string name="type_guest_name">Type guest name</string>
     <string name="total_of_invited_persons">Total of invited persons:</string>
     <string name="total_of_guests">Total of guests:</string>
