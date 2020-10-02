@@ -26,7 +26,7 @@ class DashboardViewModel : ViewModel() {
                 val minutes = ChronoUnit.MINUTES.between(time, wed) - days * 24 * 60 - hours * 60
                 val seconds = ChronoUnit.SECONDS.between(time, wed) - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60
 
-                value = Timestamp(days, hours, minutes, seconds)
+                value = Timestamp(days.toString(), hours.toString(), minutes.toString(), seconds.toString())
             }
 
             override fun onFinish() {

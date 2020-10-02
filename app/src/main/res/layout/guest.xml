@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="guestName" type="String" />
-        <variable name="guestStatus" type="Integer" />
+        <variable name="guest" type="com.example.pimpmywed.database.GuestsEntity" />
     </data>
 
     <RelativeLayout
@@ -23,7 +22,7 @@
             android:fontFamily="@font/poiret_one"
             android:textColor="@android:color/black"
             android:layout_alignParentLeft="true"
-            android:text="@{guestName}"/>
+            android:text="@{guest.name}"/>
 
         <ImageView
             android:id="@+id/checked_status"
@@ -31,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/guest_margin_top_size"
-            app:imageResource="@{guestStatus}"/>
+            android:src="@{guest.isChecked() ? @drawable/ic_checked : @drawable/ic_not_checked}"/>
 
     </RelativeLayout>
 </layout>

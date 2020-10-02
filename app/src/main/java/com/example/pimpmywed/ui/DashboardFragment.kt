@@ -18,12 +18,15 @@ class DashboardFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            binding.numberOfDaysVal = it.days.toString()
-            binding.numberOfHoursVal = it.hours.toString()
-            binding.numberOfMinutesVal = it.minutes.toString()
-            binding.numberOfSecondsVal = it.seconds.toString()
-        })
+//        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+//            binding.numberOfDaysVal = it.days.toString()
+//            binding.numberOfHoursVal = it.hours.toString()
+//            binding.numberOfMinutesVal = it.minutes.toString()
+//            binding.numberOfSecondsVal = it.seconds.toString()
+//        })
+
+        binding.dashboardViewModel = dashboardViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         return binding.root
     }

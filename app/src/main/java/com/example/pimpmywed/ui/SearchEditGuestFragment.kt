@@ -53,9 +53,9 @@ class SearchEditGuestFragment : Fragment() {
     }
 
     private fun updateList(list : List<GuestsEntity>) {
-        var adapterAll : TableGuestsAdapter = TableGuestsAdapter(list, { guestItem : GuestsEntity -> guestItemClicked(guestItem) })
-        binding.searchResult.layoutManager = LinearLayoutManager(requireActivity())
-        binding.searchResult.adapter = adapterAll
+//        var adapterAll : TableGuestsAdapter = TableGuestsAdapter(list, { guestItem : GuestsEntity -> guestItemClicked(guestItem) })
+//        binding.searchResult.layoutManager = LinearLayoutManager(requireActivity())
+//        binding.searchResult.adapter = adapterAll
     }
 
     private fun guestItemClicked(guestItem: GuestsEntity) {

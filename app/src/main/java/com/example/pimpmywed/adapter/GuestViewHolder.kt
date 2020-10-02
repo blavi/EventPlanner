@@ -13,15 +13,18 @@ class GuestViewHolder(private val binding: GuestBinding): ChildViewHolder(bindin
 //        checkedStatus = itemView.findViewById(R.id.checked_status)
 //    }
     fun onBind(guest : GuestsEntity, clickListener: (GuestsEntity) -> Unit) {
-    binding.guestName = guest.name
-        if (guest.checked.toInt() == 0) {
-            binding.guestStatus = R.drawable.ic_not_checked
-        } else {
-            binding.guestStatus = R.drawable.ic_checked
-        }
 
+        binding.guest = guest
+//        binding.guestName = guest.name
+//            if (guest.checked.toInt() == 0) {
+//                binding.guestStatus = R.drawable.ic_not_checked
+//            } else {
+//                binding.guestStatus = R.drawable.ic_checked
+//            }
+//
         itemView.setOnClickListener{
             clickListener(guest)
         }
+        binding.executePendingBindings()
     }
 }

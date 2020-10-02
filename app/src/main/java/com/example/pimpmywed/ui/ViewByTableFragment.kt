@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,7 +20,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class ViewByTableFragment : Fragment() {
 
     private val viewByTableViewModel: ViewByTableViewModel by viewModel()
@@ -34,47 +32,72 @@ class ViewByTableFragment : Fragment() {
         binding = FragmentViewbytableBinding.inflate(inflater, container, false)
 
         setupObservers()
-        setUI()
+
+        binding.viewByTableViewModel = viewByTableViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val recyclerViewAdapter = TableGuestsAdapter { guestItem: GuestsEntity -> guestItemClicked(guestItem) }
+        binding.guestsList.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = recyclerViewAdapter
+        }
+
+        dropdownAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item)
+        dropdownAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.positionSpinner.adapter = dropdownAdapter
+
+//        dropdownAdapter = DropdownAdapter(requireContext(), R.layout.spinner_item)
+//        dropdownAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        binding.positionSpinner.adapter = dropdownAdapter
+    }
 
     override fun onResume() {
         super.onResume()
 
         setTables()
+
+//        setUI()
     }
 
-    private fun setUI() {
-        binding.positionSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                val item = dropdownAdapter.getItem(position)
-                val number = item?.substring(item.indexOf(" ") + 1)
-                itemNumber = number?.toInt() ?: 1
-                setGuests(itemNumber, false)
-            }
-        }
-    }
+//    private fun setUI() {
+//        binding.positionSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//
+//            }
+//
+//            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+//                val item = dropdownAdapter.getItem(position)
+//                val number = item?.substring(item.indexOf(" ") + 1)
+//                itemNumber = number?.toInt() ?: 1
+//                setGuests(itemNumber, false)
+//            }
+//        }
+//    }
 
     private fun setupObservers() {
-        viewByTableViewModel.guests.observe(viewLifecycleOwner, Observer {
-            var adapterAll : TableGuestsAdapter = TableGuestsAdapter(it, { guestItem : GuestsEntity -> guestItemClicked(guestItem) })
-            binding.guestsList.layoutManager = LinearLayoutManager(activity)
-            binding.guestsList.adapter = adapterAll
-            binding.guestsList.invalidate()
+        viewByTableViewModel.selectedItem.observe(viewLifecycleOwner, Observer {
+            itemNumber = it
         })
 
-        viewByTableViewModel.dropdown.observe(viewLifecycleOwner, Observer { list ->
-            val tableValues : List<String> = list.map { getString(R.string.table1 ) + " " + it }
-            dropdownAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item, tableValues)
-            dropdownAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.positionSpinner.adapter = dropdownAdapter
-        })
+//        viewByTableViewModel.guests.observe(viewLifecycleOwner, Observer {
+//            var adapterAll : TableGuestsAdapter = TableGuestsAdapter(it, { guestItem : GuestsEntity -> guestItemClicked(guestItem) })
+//            binding.guestsList.layoutManager = LinearLayoutManager(activity)
+//            binding.guestsList.adapter = adapterAll
+//            binding.guestsList.invalidate()
+//        })
+//
+//        viewByTableViewModel.dropdown.observe(viewLifecycleOwner, Observer { list ->
+//            val tableValues : List<String> = list.map { getString(R.string.table1 ) + " " + it }
+//            dropdownAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item, tableValues)
+//            dropdownAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            binding.positionSpinner.adapter = dropdownAdapter
+//        })
     }
 
     private fun guestItemClicked(guestItem: GuestsEntity) {
@@ -108,7 +131,7 @@ class ViewByTableFragment : Fragment() {
     }
 
     private fun setTables() {
-        viewByTableViewModel.getTables(false)
+        viewByTableViewModel.getTables(getString(R.string.table1), false)
     }
 
     private fun setGuests(table : Int, forceUpdate : Boolean) {

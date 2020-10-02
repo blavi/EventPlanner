@@ -2,14 +2,20 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+<!--    <data>-->
+<!--        <variable name="totalOfInvitedPersons" type="String" />-->
+<!--        <variable name="totalOfGuests" type="String" />-->
+<!--        <variable name="totalOfGuestsWithVegetarianMenu" type="String" />-->
+<!--        <variable name="totalOfGuestsWithClassicMenu" type="String" />-->
+<!--        <variable name="totalOfGuestsWithChildrenMenu" type="String" />-->
+<!--        <variable name="totalOfCheckedInGuests" type="String" />-->
+<!--        <variable name="totalOfNotCheckedInGuests" type="String" />-->
+<!--    </data>-->
+
     <data>
-        <variable name="totalOfInvitedPersons" type="String" />
-        <variable name="totalOfGuests" type="String" />
-        <variable name="totalOfGuestsWithVegetarianMenu" type="String" />
-        <variable name="totalOfGuestsWithClassicMenu" type="String" />
-        <variable name="totalOfGuestsWithChildrenMenu" type="String" />
-        <variable name="totalOfCheckedInGuests" type="String" />
-        <variable name="totalOfNotCheckedInGuests" type="String" />
+        <variable
+            name="homeViewModel"
+            type="com.example.pimpmywed.viewmodel.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +49,7 @@
             android:fontFamily="@font/gafata"
             android:textStyle="bold"
             android:layout_marginLeft="@dimen/guest_margin_top_size"
-            android:text="@{totalOfInvitedPersons}"/>
+            android:text="@{homeViewModel.totalNumberOfInvitedPersons}"/>
 
         <TextView
             android:id="@+id/totalOfGuestsLabel"
@@ -72,7 +78,7 @@
             android:fontFamily="@font/gafata"
             android:textStyle="bold"
             android:layout_marginLeft="@dimen/guest_margin_top_size"
-            android:text="@{totalOfGuests}"/>
+            android:text="@{homeViewModel.totalNumberOfGuests}"/>
 
         <TextView
             android:id="@+id/totalOfGuestsWithVegetarianMenuLabel"
@@ -101,7 +107,7 @@
             android:fontFamily="@font/gafata"
             android:textStyle="bold"
             android:layout_marginLeft="@dimen/guest_margin_top_size"
-            android:text="@{totalOfGuestsWithVegetarianMenu}"/>
+            android:text="@{homeViewModel.totalOfVegetarianGuests}"/>
 
         <TextView
             android:id="@+id/totalOfGuestsWithClassicMenuLabel"
@@ -130,7 +136,7 @@
             android:fontFamily="@font/gafata"
             android:textStyle="bold"
             android:layout_marginLeft="@dimen/guest_margin_top_size"
-            android:text="@{totalOfGuestsWithClassicMenu}"/>
+            android:text="@{homeViewModel.totalOfClassicGuests}"/>
 
         <TextView
             android:id="@+id/totalOfGuestsWithChildrenMenuLabel"
@@ -159,7 +165,7 @@
             android:fontFamily="@font/gafata"
             android:textStyle="bold"
             android:layout_marginLeft="@dimen/guest_margin_top_size"
-            android:text="@{totalOfGuestsWithChildrenMenu}"/>
+            android:text="@{homeViewModel.totalOfChildrenGuests}"/>
 
         <TextView
             android:id="@+id/totalOfCheckedInGuestsLabel"
@@ -188,7 +194,7 @@
             android:fontFamily="@font/gafata"
             android:textStyle="bold"
             android:layout_marginLeft="@dimen/guest_margin_top_size"
-            android:text="@{totalOfCheckedInGuests}"/>
+            android:text="@{homeViewModel.totalOfCheckedInGuests}"/>
 
         <TextView
             android:id="@+id/totalOfNotCheckedInGuestsLabel"
@@ -217,6 +223,6 @@
             android:fontFamily="@font/gafata"
             android:textStyle="bold"
             android:layout_marginLeft="@dimen/guest_margin_top_size"
-            android:text="@{totalOfNotCheckedInGuests}"/>
+            android:text="@{homeViewModel.totalOfNotCheckedInGuests}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -64,6 +64,6 @@ data class GuestsEntity (
     }
 
     fun isChecked(): Boolean {
-        return checked == "0"
+        return checked == "1"
     }
 }

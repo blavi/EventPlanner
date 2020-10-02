@@ -35,7 +35,7 @@ class GuestDetailsDialogFragment : DialogFragment() {
                 binding.table = guest.table
 
                 if (guest.isChecked()) {
-                    binding.status = R.drawable.ic_not_checked
+                    binding.status = R.drawable.ic_checked
                     binding.checkInBtn.visibility = View.VISIBLE
                     binding.checkInBtn.setOnClickListener{
                         val launchIntent: Intent? = requireActivity().packageManager.getLaunchIntentForPackage("com.google.android.youtube")
@@ -46,7 +46,7 @@ class GuestDetailsDialogFragment : DialogFragment() {
                         }
                     }
                 } else {
-                    binding.status = R.drawable.ic_checked
+                    binding.status = R.drawable.ic_not_checked
                 }
             }
     }

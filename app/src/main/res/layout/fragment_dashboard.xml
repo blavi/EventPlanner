@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+<!--    <data>-->
+<!--        <variable name="numberOfDaysVal" type="String" />-->
+<!--        <variable name="numberOfHoursVal" type="String" />-->
+<!--        <variable name="numberOfMinutesVal" type="String" />-->
+<!--        <variable name="numberOfSecondsVal" type="String" />-->
+<!--    </data>-->
+
     <data>
-        <variable name="numberOfDaysVal" type="String" />
-        <variable name="numberOfHoursVal" type="String" />
-        <variable name="numberOfMinutesVal" type="String" />
-        <variable name="numberOfSecondsVal" type="String" />
+        <variable
+            name="dashboardViewModel"
+            type="com.example.pimpmywed.viewmodel.DashboardViewModel" />
     </data>
 
     <FrameLayout
@@ -30,7 +36,7 @@
                 android:textStyle="bold"
                 app:layout_constraintWidth_percent="0.4"
                 android:gravity="end"
-                android:text="@{numberOfDaysVal}"/>
+                android:text="@{dashboardViewModel.text.days}"/>
 
             <TextView
                 android:id="@+id/daysLabel"
@@ -57,7 +63,7 @@
                 app:layout_constraintWidth_percent="0.4"
                 android:textStyle="bold"
                 android:gravity="end"
-                android:text="@{numberOfHoursVal}"/>
+                android:text="@{dashboardViewModel.text.hours}"/>
 
             <TextView
                 android:id="@+id/hoursLabel"
@@ -84,7 +90,7 @@
                 android:fontFamily="@font/poiret_one"
                 android:textStyle="bold"
                 android:gravity="end"
-                android:text="@{numberOfMinutesVal}"/>
+                android:text="@{dashboardViewModel.text.minutes}"/>
 
             <TextView
                 android:id="@+id/minutesLabel"
@@ -111,7 +117,7 @@
                 android:fontFamily="@font/poiret_one"
                 android:textStyle="bold"
                 android:gravity="end"
-                android:text="@{numberOfSecondsVal}"/>
+                android:text="@{dashboardViewModel.text.seconds}"/>
 
             <TextView
                 android:id="@+id/secondsLabel"
