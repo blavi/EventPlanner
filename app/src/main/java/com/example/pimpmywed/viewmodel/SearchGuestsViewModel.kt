@@ -2,6 +2,7 @@ package com.example.pimpmywed.viewmodel
 
 import android.text.Editable
 import androidx.annotation.VisibleForTesting
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -16,17 +17,23 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.mapLatest
 
 class SearchGuestsViewModel(private val personsRepository: PersonsRepository) : ViewModel() {
+    var query = MutableLiveData<String>()
+
     private var forceQueryUpdate: Boolean = false
     companion object {
         const val SEARCH_DELAY_MS = 500L
         const val MIN_QUERY_LENGTH = 3
     }
 
-    fun getResult(editable : Editable?, forceUpdate : Boolean) {
+    fun getResult(editable: String, forceUpdate : Boolean = false) {
         forceQueryUpdate = forceUpdate
         viewModelScope.launch {
-            queryChannel.send(editable.toString())
+            queryChannel.send(editable)
         }
+    }
+
+    fun onTextChanged(s: CharSequence, start: Int, before : Int, count :Int){
+        getResult(s.toString())
     }
 
     @ExperimentalCoroutinesApi
@@ -42,6 +49,7 @@ class SearchGuestsViewModel(private val personsRepository: PersonsRepository) : 
         .mapLatest {
             try {
                 if (it.length >= MIN_QUERY_LENGTH) {
+                    query.value = it
                     val searchResult = withContext(Dispatchers.IO) {
                         personsRepository.getGuestsBasedOnQuery(forceQueryUpdate, it)
                     }

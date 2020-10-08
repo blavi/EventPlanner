@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="otherResult" type="String" />
+<!--        <variable name="otherResult" type="String" />-->
+
+        <import type="android.view.View"/>
+        <variable name="viewModel" type="com.example.pimpmywed.viewmodel.SearchGuestsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,47 +16,59 @@
         android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_vertical_margin">
 
-        <EditText
-            android:id="@+id/searchEditTxtView"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:hint="@string/type_guest_name"
-            android:singleLine="true"
-            android:textSize="@dimen/table_header_size"
-            android:fontFamily="@font/gafata" />
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorPrimary"
+            app:hintTextColor="@color/colorPrimaryDark"
+            app:message="@{viewModel.searchResult.message}">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchEditTxtView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/type_guest_name"
+                android:singleLine="true"
+                android:textSize="@dimen/table_header_size"
+                android:fontFamily="@font/gafata"
+                android:onTextChanged="@{viewModel.onTextChanged}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/searchResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/searchEditTxtView"
+            app:layout_constraintTop_toBottomOf="@+id/searchInputLayout"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/activity_horizontal_margin" />
+            android:visibility="@{viewModel.searchResult.valid ? View.VISIBLE : View.GONE}"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            app:recyclerViewDataSearch="@{viewModel.searchResult}"/>
 
-        <TextView
-            android:id="@+id/otherResultTxtView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="@dimen/table_header_size"
-            android:fontFamily="@font/gafata"
-            android:text="@{otherResult}"/>
+<!--        <TextView-->
+<!--            android:id="@+id/otherResultTxtView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:textSize="@dimen/table_header_size"-->
+<!--            android:fontFamily="@font/gafata"-->
+<!--            app:message="@{viewModel.searchResult.message}"-->
+<!--            android:visibility="@{viewModel.searchResult.valid ? View.GONE : View.VISIBLE}"/>-->
 
         <ProgressBar
             android:id="@+id/progressbar"
             style="?android:attr/progress"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:indeterminate="true"
             android:max="100"
             android:backgroundTint="@color/colorPrimary"

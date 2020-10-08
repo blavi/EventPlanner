@@ -2,11 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <variable name="name" type="String" />
-        <variable name="menu" type="String" />
-        <variable name="table" type="String" />
-        <variable name="age" type="String" />
-        <variable name="status" type="Integer" />
+<!--        <variable name="name" type="String" />-->
+<!--        <variable name="menu" type="String" />-->
+<!--        <variable name="table" type="String" />-->
+<!--        <variable name="age" type="String" />-->
+<!--        <variable name="status" type="Integer" />-->
+
+        <import type="android.view.View"/>
+<!--        <variable name="guest" type="com.example.pimpmywed.database.GuestsEntity" />-->
+        <variable name="guestDetailsViewModel" type="com.example.pimpmywed.viewmodel.GuestDetailsViewModel" />
     </data>
 
     <FrameLayout
@@ -46,7 +50,7 @@
                 android:fontFamily="@font/gafata"
                 android:textStyle="bold"
                 android:layout_gravity="start"
-                android:text="@{name}"/>
+                android:text="@{guestDetailsViewModel.guest.name}"/>
 
             <TextView
                 android:id="@+id/menuLabel"
@@ -72,7 +76,7 @@
                 app:layout_constraintWidth_percent="0.6"
                 android:fontFamily="@font/gafata"
                 android:textStyle="bold"
-                android:text="@{menu}"/>
+                android:text="@{guestDetailsViewModel.guest.menu}"/>
 
             <TextView
                 android:id="@+id/tableLabel"
@@ -98,7 +102,7 @@
                 app:layout_constraintStart_toEndOf="@+id/tableLabel"
                 android:fontFamily="@font/gafata"
                 android:textStyle="bold"
-                android:text="@{table}"/>
+                android:text="@{guestDetailsViewModel.guest.table}"/>
 
             <TextView
                 android:id="@+id/ageLabel"
@@ -124,7 +128,7 @@
                 app:layout_constraintStart_toEndOf="@+id/ageLabel"
                 android:fontFamily="@font/gafata"
                 android:textStyle="bold"
-                android:text="@{age}"/>
+                android:text="@{guestDetailsViewModel.guest.age}"/>
 
             <TextView
                 android:id="@+id/statusLabel"
@@ -148,7 +152,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/ageLabel"
                 app:layout_constraintStart_toEndOf="@+id/statusLabel"
                 android:scaleType="fitStart"
-                app:imageResource="@{status}"/>
+                android:src="@{guestDetailsViewModel.guest.isChecked() ? @drawable/ic_checked : @drawable/ic_not_checked}"/>
 
             <Button
                 android:id="@+id/checkInBtn"
@@ -164,7 +168,8 @@
                 android:fontFamily="@font/gafata"
                 android:textSize="@dimen/table_content_size"
                 android:textColor="@android:color/white"
-                android:visibility="gone" />
+                android:visibility="@{guestDetailsViewModel.guest.isChecked() ? View.GONE : View.VISIBLE}"
+                android:onClick="@{() -> guestDetailsViewModel.updateStatus()}"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

@@ -7,8 +7,7 @@ import com.example.pimpmywed.bindings.BindableAdapter
 import com.example.pimpmywed.database.GuestsEntity
 import com.example.pimpmywed.databinding.GuestBinding
 
-class TableGuestsAdapter(private val clickListener: (GuestsEntity) -> Unit) : RecyclerView.Adapter<GuestViewHolder>(),
-    BindableAdapter<GuestsEntity> {
+class TableGuestsAdapter(private val clickListener: (GuestsEntity) -> Unit) : RecyclerView.Adapter<GuestViewHolder>(), BindableAdapter<GuestsEntity> {
     var list = emptyList<GuestsEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuestViewHolder {
