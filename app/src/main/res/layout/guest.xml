@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/guest_left_margin_size"
-        android:layout_marginRight="@dimen/guest_left_margin_size">
+        android:layout_marginRight="@dimen/guest_left_margin_size"
+        android:background="@drawable/guest_background_item">
 
         <TextView
             android:id="@+id/list_item_guest_name"
