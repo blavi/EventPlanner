@@ -26,40 +26,8 @@ class HomeFragment: Fragment() {
     override fun onResume() {
         super.onResume()
 
-//        setupObservers()
         showStatistics()
     }
-
-
-//    private fun setupObservers() {
-//        homeViewModel.totalNumberOfInvitedPersons.observe(viewLifecycleOwner, Observer {
-//            binding.totalOfInvitedPersons = it
-//        })
-//
-//        homeViewModel.totalNumberOfGuests.observe(viewLifecycleOwner, Observer {
-//            binding.totalOfGuests = it
-//        })
-//
-//        homeViewModel.totalOfVegetarianGuests.observe(viewLifecycleOwner, Observer {
-//            binding.totalOfGuestsWithVegetarianMenu = it
-//        })
-//
-//        homeViewModel.totalOfClassicGuests.observe(viewLifecycleOwner, Observer {
-//            binding.totalOfGuestsWithClassicMenu = it
-//        })
-//
-//        homeViewModel.totalOfChildrenGuests.observe(viewLifecycleOwner, Observer {
-//            binding.totalOfGuestsWithChildrenMenu = it
-//        })
-//
-//        homeViewModel.totalOfCheckedInGuests.observe(viewLifecycleOwner, Observer {
-//            binding.totalOfCheckedInGuests = it
-//        })
-//
-//        homeViewModel.totalOfNotCheckedInGuests.observe(viewLifecycleOwner, Observer {
-//            binding.totalOfNotCheckedInGuests = it
-//        })
-//    }
 
     private fun showStatistics() {
         homeViewModel.getPersons(false)

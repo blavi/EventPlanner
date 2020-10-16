@@ -41,37 +41,4 @@ class GuestDetailsDialogFragment : DialogFragment() {
             guestDetailsViewModel.guest = guest
         }
     }
-
-
-
-
-
-
-//            binding.guest = guest
-//
-//                binding.name = guest.name
-//                binding.menu = guest.menu
-//                binding.age = guest.age
-//                binding.table = guest.table
-//
-//                if (guest.isChecked()) {
-//                    binding.status = R.drawable.ic_checked
-//                    binding.checkInBtn.visibility = View.VISIBLE
-//                    binding.checkInBtn.setOnClickListener{
-//
-//                        guestDetailsViewModel.updateStatus()
-//                        this.dialog?.dismiss()
-//
-////                        val launchIntent: Intent? = requireActivity().packageManager.getLaunchIntentForPackage("com.google.android.youtube")
-////                        if (launchIntent != null) {
-////                            startActivity(launchIntent)
-////                        } else {
-////                            Toast.makeText(activity, "There is no package available in android", Toast.LENGTH_LONG).show()
-////                        }
-//                    }
-//                } else {
-//                    binding.status = R.drawable.ic_not_checked
-//                }
-//            }
-//    }
 }

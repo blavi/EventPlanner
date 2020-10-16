@@ -3,12 +3,16 @@ package com.example.pimpmywed.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.pimpmywed.PimpMyWedApp
 import com.example.pimpmywed.R
+import com.example.pimpmywed.databinding.ActivityMainBinding
+import com.example.pimpmywed.databinding.FragmentDashboardBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.Scope
@@ -16,16 +20,22 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential
 import com.google.api.services.sheets.v4.SheetsScopes
 import com.jakewharton.threetenabp.AndroidThreeTen
+import np.com.susanthapa.curved_bottom_navigation.CbnMenuItem
+import np.com.susanthapa.curved_bottom_navigation.CurvedBottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     companion object {
         private const val REQUEST_SIGN_IN = 1
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        binding.lifecycleOwner = this
 
         AndroidThreeTen.init(this)
 
@@ -41,17 +51,41 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+
+        setBottomNavigationView(navController)
 
         requestSignIn()
     }
 
+    private fun setBottomNavigationView(navController: NavController) {
+        val menuItems = arrayOf(
+            CbnMenuItem(
+                R.drawable.ic_timer, // the icon
+                R.drawable.ic_avd_timer, // the AVD that will be shown in FAB
+                R.id.navigation_home // optional if you use Jetpack Navigation
+            ),
+            CbnMenuItem(
+                R.drawable.ic_bar_chart_black,
+                R.drawable.ic_avd_bar_chart,
+                R.id.navigation_dashboard
+            ),
+            CbnMenuItem(
+                R.drawable.ic_all_out_black,
+                R.drawable.ic_avd_all_out,
+                R.id.navigation_notifications
+            ),
+            CbnMenuItem(
+                R.drawable.ic_search,
+                R.drawable.ic_avd_search,
+                R.id.navigation_search_edit
+            )
+        )
+        binding.navView.setMenuItems(menuItems, 0)
+
+        binding.navView.setupWithNavController(navController)
+    }
+
     private fun requestSignIn() {
-        /*
-        GoogleSignIn.getLastSignedInAccount(context)?.also { account ->
-            Timber.d("account=${account.displayName}")
-        }
-         */
 
         val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
              .requestEmail()

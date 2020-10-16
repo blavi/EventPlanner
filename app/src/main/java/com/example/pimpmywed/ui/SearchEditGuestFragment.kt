@@ -41,12 +41,6 @@ class SearchEditGuestFragment : Fragment() {
     }
 
     private fun setUI() {
-//        binding.searchEditTxtView.doAfterTextChanged {editable ->
-//            if (editable != null) {
-//                editableQuery = editable
-//            }
-//            sendQuery(editable, false)
-//        }
 
         var adapterAll : TableGuestsAdapter = TableGuestsAdapter { guestItem: GuestsEntity -> guestItemClicked(
             guestItem
@@ -60,14 +54,6 @@ class SearchEditGuestFragment : Fragment() {
     private fun sendQuery(editable: String, forceUpdate: Boolean) {
         searchGuestsViewModel.getResult(editable, forceUpdate)
     }
-
-//    private fun updateList(list : List<GuestsEntity>) {
-//        var adapterAll : TableGuestsAdapter = TableGuestsAdapter { guestItem : GuestsEntity -> guestItemClicked(guestItem) }
-//        binding.searchResult.apply {
-//            layoutManager = LinearLayoutManager(requireActivity())
-//            adapter = adapterAll
-//        }
-//    }
 
     private fun guestItemClicked(guestItem: GuestsEntity) {
         val pop = GuestDetailsDialogFragment()
@@ -110,40 +96,5 @@ class SearchEditGuestFragment : Fragment() {
             val inputMethodManager = requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(requireActivity().currentFocus!!.windowToken, 0)
         })
-
-//        searchGuestsViewModel.searchResult.observe(viewLifecycleOwner, Observer {
-//            when (it) {
-//                is ValidResult -> {
-//                    binding.otherResultTxtView.visibility = View.GONE
-//                    binding.searchResult.visibility = View.VISIBLE
-//                    updateList(it.result)
-//                }
-//                is ErrorResult -> {
-//                    updateList(emptyList())
-//                    binding.otherResultTxtView.visibility = View.VISIBLE
-//                    binding.searchResult.visibility = View.GONE
-//                    binding.otherResult = getString(R.string.search_error)
-//                }
-//                is EmptyResult -> {
-//                    updateList(emptyList())
-//                    binding.otherResultTxtView.visibility = View.VISIBLE
-//                    binding.searchResult.visibility = View.GONE
-//                    binding.otherResult = getString(R.string.empty_result)
-//                }
-//                is EmptyQuery -> {
-//                    updateList(emptyList())
-//                    binding.otherResultTxtView.visibility = View.VISIBLE
-//                    binding.searchResult.visibility = View.GONE
-//                    binding.otherResult = getString(R.string.not_enough_characters)
-//                }
-//                is TerminalError -> {
-//                    Toast.makeText(
-//                        activity,
-//                        getString(R.string.unexpected_error),
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//            }
-//        })
     }
 }

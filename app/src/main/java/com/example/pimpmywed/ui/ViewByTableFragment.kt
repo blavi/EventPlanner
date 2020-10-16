@@ -51,53 +51,18 @@ class ViewByTableFragment : Fragment() {
         dropdownAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item)
         dropdownAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.positionSpinner.adapter = dropdownAdapter
-
-//        dropdownAdapter = DropdownAdapter(requireContext(), R.layout.spinner_item)
-//        dropdownAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        binding.positionSpinner.adapter = dropdownAdapter
     }
 
     override fun onResume() {
         super.onResume()
 
         setTables()
-
-//        setUI()
     }
-
-//    private fun setUI() {
-//        binding.positionSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//
-//            }
-//
-//            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-//                val item = dropdownAdapter.getItem(position)
-//                val number = item?.substring(item.indexOf(" ") + 1)
-//                itemNumber = number?.toInt() ?: 1
-//                setGuests(itemNumber, false)
-//            }
-//        }
-//    }
 
     private fun setupObservers() {
         viewByTableViewModel.selectedItem.observe(viewLifecycleOwner, Observer {
             itemNumber = it
         })
-
-//        viewByTableViewModel.guests.observe(viewLifecycleOwner, Observer {
-//            var adapterAll : TableGuestsAdapter = TableGuestsAdapter(it, { guestItem : GuestsEntity -> guestItemClicked(guestItem) })
-//            binding.guestsList.layoutManager = LinearLayoutManager(activity)
-//            binding.guestsList.adapter = adapterAll
-//            binding.guestsList.invalidate()
-//        })
-//
-//        viewByTableViewModel.dropdown.observe(viewLifecycleOwner, Observer { list ->
-//            val tableValues : List<String> = list.map { getString(R.string.table1 ) + " " + it }
-//            dropdownAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item, tableValues)
-//            dropdownAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//            binding.positionSpinner.adapter = dropdownAdapter
-//        })
     }
 
     private fun guestItemClicked(guestItem: GuestsEntity) {
