@@ -14,7 +14,6 @@ import com.google.api.services.sheets.v4.model.UpdateValuesResponse
 import com.google.api.services.sheets.v4.model.ValueRange
 import kotlinx.coroutines.*
 
-
 class PersonsRepositoryImpl(private val apiProvider: ApiProvider, private val dao: GuestsDAO): PersonsRepository {
 
     override suspend fun getPersons(forceUpdate: Boolean) : List<GuestsEntity> = withContext(Dispatchers.IO) {
@@ -133,15 +132,15 @@ class PersonsRepositoryImpl(private val apiProvider: ApiProvider, private val da
         val guests: List<GuestsEntity> = list.map {
             GuestsEntity(
                 0,
-                it.get(0),
-                it.get(1),
-                it.get(2),
-                it.get(3),
-                it.get(4),
-                it.get(5),
-                it.get(6),
-                it.get(7),
-                it.get(8)
+                it[0],
+                it[1],
+                it[2],
+                it[3],
+                it[4],
+                it[5],
+                it[6],
+                it[7],
+                it[8]
             )
         }
 

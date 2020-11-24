@@ -19,7 +19,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class AllTablesFragment : Fragment() {
 
     private val allTablesViewModel: AllTablesViewModel  by viewModel()
@@ -88,5 +87,4 @@ class AllTablesFragment : Fragment() {
     private fun setCurrentState(forceUpdate : Boolean) {
         allTablesViewModel.getPersons(forceUpdate)
     }
-
 }

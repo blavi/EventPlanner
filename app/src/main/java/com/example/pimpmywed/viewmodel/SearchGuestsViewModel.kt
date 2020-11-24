@@ -1,6 +1,5 @@
 package com.example.pimpmywed.viewmodel
 
-import android.text.Editable
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -76,12 +75,4 @@ class SearchGuestsViewModel(private val personsRepository: PersonsRepository) : 
     @FlowPreview
     @ExperimentalCoroutinesApi
     val searchResult = internalSearchResult.asLiveData()
-
-//    class Factory() :
-//        ViewModelProvider.NewInstanceFactory() {
-//        @Suppress("UNCHECKED_CAST")
-//        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-//            return SearchGuestsViewModel() as T
-//        }
-//    }
 }

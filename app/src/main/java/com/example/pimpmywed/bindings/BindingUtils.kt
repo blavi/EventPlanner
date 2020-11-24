@@ -10,7 +10,6 @@ import com.example.pimpmywed.utils.ValidResult
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-
 @BindingAdapter("recyclerViewData")
 fun <T> setRecyclerViewProperties(recyclerView: RecyclerView, items: List<T>?) {
     if (recyclerView.adapter is BindableAdapter<*>) {
@@ -30,10 +29,6 @@ fun <T> setRecyclerViewSearchProperties(recyclerView: RecyclerView, items: Searc
                 (recyclerView.adapter as BindableAdapter<T>).setData(emptyList())
             }
         }
-
-//        items?.let {
-//            (recyclerView.adapter as BindableAdapter<T>).setData(items)
-//        }
     }
 }
 

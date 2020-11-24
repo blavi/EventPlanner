@@ -12,7 +12,6 @@ import com.example.pimpmywed.database.GuestsEntity
 import com.example.pimpmywed.repository.PersonsRepository
 import kotlinx.coroutines.launch
 
-
 class ViewByTableViewModel(private val personsRepository: PersonsRepository): ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {

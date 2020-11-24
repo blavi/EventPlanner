@@ -18,8 +18,6 @@ class PimpMyWedApp : Application() {
         var cacheKey : String = "value"
         var threshold : Long = 30
 
-//        var db : WedDatabase? = null
-
         lateinit var credentials : GoogleAccountCredential
     }
 
@@ -27,8 +25,6 @@ class PimpMyWedApp : Application() {
         super.onCreate()
 
         sharedPreferences = getSharedPreferences("time", Context.MODE_PRIVATE)
-
-//        db = WedDatabase.getAppDataBase(context = applicationContext)
 
         startKoin {
             // use AndroidLogger as Koin Logger - default Level.INFO

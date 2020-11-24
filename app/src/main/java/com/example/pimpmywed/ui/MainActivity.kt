@@ -8,20 +8,16 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.pimpmywed.PimpMyWedApp
 import com.example.pimpmywed.R
 import com.example.pimpmywed.databinding.ActivityMainBinding
-import com.example.pimpmywed.databinding.FragmentDashboardBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.Scope
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential
 import com.google.api.services.sheets.v4.SheetsScopes
 import com.jakewharton.threetenabp.AndroidThreeTen
 import np.com.susanthapa.curved_bottom_navigation.CbnMenuItem
-import np.com.susanthapa.curved_bottom_navigation.CurvedBottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -87,7 +83,7 @@ class MainActivity : AppCompatActivity() {
     private fun requestSignIn() {
 
         val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-             .requestEmail()
+            .requestEmail()
             // .requestScopes(Scope(SheetsScopes.SPREADSHEETS_READONLY))
             .requestScopes(Scope(SheetsScopes.SPREADSHEETS))
             .build()
